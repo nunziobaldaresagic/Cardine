@@ -1,9 +1,22 @@
 /* ─── SWITCH: mobile vs desktop ───────────────────────────────────────────── */
-.mobile  { display: flex;  flex-direction: column; min-height: 100svh; background-color: var(--color-background); align-items: center; justify-content: center; position: relative; overflow: hidden; }
-.desktop { display: none; }
+.mobile {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  background-color: var(--color-background);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.desktop {
+  display: none;
+}
 
 @media (min-width: 1024px) {
-  .mobile  { display: none; }
+  .mobile {
+    display: none;
+  }
   .desktop {
     display: flex;
     flex-direction: column;
@@ -33,22 +46,31 @@
   z-index: 0;
 }
 .blobTR {
-  top: 0; right: 0;
-  width: 256px; height: 256px;
+  top: 0;
+  right: 0;
+  width: 256px;
+  height: 256px;
   background-color: var(--color-primary-container);
   opacity: 0.1;
   animation: blobPulse 4s ease-in-out infinite;
 }
 .blobBL {
-  bottom: 0; left: 0;
-  width: 320px; height: 320px;
+  bottom: 0;
+  left: 0;
+  width: 320px;
+  height: 320px;
   background-color: var(--color-secondary-container);
   opacity: 0.1;
   animation: blobPulse 4s ease-in-out infinite 2s;
 }
 @keyframes blobPulse {
-  0%, 100% { opacity: 0.1; }
-  50%       { opacity: 0.18; }
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.18;
+  }
 }
 
 /* ─── Contenitore mobile ───────────────────────────────────────────────────── */
@@ -146,15 +168,26 @@
   border-radius: var(--radius-lg);
   cursor: pointer;
   box-shadow: var(--shadow-card);
-  transition: opacity 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+  transition:
+    opacity 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
 }
 .ctaBtn:hover {
   opacity: 0.9;
   box-shadow: var(--shadow-card-hover);
 }
-.ctaBtn:active { transform: scale(0.98); }
-.ctaBtn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
-.ctaBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+.ctaBtn:active {
+  transform: scale(0.98);
+}
+.ctaBtn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+.ctaBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
 /* ─── Messaggio di errore ──────────────────────────────────────────────────── */
 .errorMsg {
@@ -187,7 +220,10 @@
   border: 1px solid var(--color-outline-variant);
   border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background-color 0.15s ease;
 }
 .ctaBtnSecondary:hover {
   border-color: var(--color-outline);
@@ -201,14 +237,17 @@
 .ctaBtnSecondary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}.ctaArrow {
+}
+.ctaArrow {
   margin-left: auto;
   display: flex;
   align-items: center;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
-.ctaBtnDesktop:hover .ctaArrow { opacity: 1; }
+.ctaBtnDesktop:hover .ctaArrow {
+  opacity: 1;
+}
 
 /* ─── Footer mobile ────────────────────────────────────────────────────────── */
 .mobileFooter {
@@ -229,7 +268,9 @@
   text-decoration: none;
   transition: color 0.15s;
 }
-.mobileFooterLinks a:hover { color: var(--color-surface-tint); }
+.mobileFooterLinks a:hover {
+  color: var(--color-surface-tint);
+}
 .footerDot {
   font-size: var(--text-caption-size);
   color: var(--color-outline-variant);
@@ -280,7 +321,9 @@
   align-items: flex-start;
   background-color: var(--color-surface);
 }
-.desktopLogoGroup { margin-bottom: var(--space-lg); }
+.desktopLogoGroup {
+  margin-bottom: var(--space-lg);
+}
 .desktopLogoImg {
   height: 64px;
   width: auto;
@@ -342,7 +385,9 @@
   gap: var(--space-sm);
   margin-bottom: var(--space-xs);
 }
-.securityTextIndent { margin-left: calc(20px + var(--space-sm)); }
+.securityTextIndent {
+  margin-left: calc(20px + var(--space-sm));
+}
 
 /* ─── Brand panel (destra) ─────────────────────────────────────────────────── */
 .brandPanel {
@@ -357,8 +402,10 @@
 }
 .brandBlob1 {
   position: absolute;
-  top: 0; right: 0;
-  width: 256px; height: 256px;
+  top: 0;
+  right: 0;
+  width: 256px;
+  height: 256px;
   background-color: var(--color-primary-fixed);
   border-radius: var(--radius-full);
   filter: blur(40px);
@@ -367,8 +414,10 @@
 }
 .brandBlob2 {
   position: absolute;
-  bottom: 0; left: 0;
-  width: 320px; height: 320px;
+  bottom: 0;
+  left: 0;
+  width: 320px;
+  height: 320px;
   background-color: var(--color-secondary-fixed);
   border-radius: var(--radius-full);
   filter: blur(40px);
@@ -442,4 +491,6 @@
   text-decoration: none;
   transition: color 0.15s;
 }
-.desktopFooterNav a:hover { color: var(--color-primary); }
+.desktopFooterNav a:hover {
+  color: var(--color-primary);
+}
