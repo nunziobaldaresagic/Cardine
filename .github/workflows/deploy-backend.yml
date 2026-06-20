@@ -1,0 +1,85 @@
+name: Deploy backend
+
+# Builds the Node/TS backend and deploys it to the Azure App Service using the
+# run-from-package (pull) model: the package is uploaded to a Storage blob and
+# the App Service is pointed at it via WEBSITE_RUN_FROM_PACKAGE. This keeps the
+# App Service inbound surface private (no SCM/Kudu push).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/backend/**'
+      - 'mock-json/**'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch:
+
+env:
+  AZURE_RG: rg-yellow
+  APP_NAME: app-cardine-demo-vnka80
+  STORAGE_ACCOUNT: sacardinevnka80
+  CONTAINER: deploy
+  API_URL: https://api.cardine.azlabs.it
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build backend
+        working-directory: src/backend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Assemble run-from-package zip
+        run: |
+          set -euo pipefail
+          rm -rf pkg && mkdir -p pkg/src/backend
+          # Preserve the repo layout so the app's relative mock-json path
+          # (__dirname/../../../mock-json) resolves to wwwroot/mock-json.
+          cp -r src/backend/dist pkg/src/backend/dist
+          npm ci --omit=dev --prefix src/backend
+          cp -r src/backend/node_modules pkg/src/backend/node_modules
+          cp -r mock-json pkg/mock-json
+          (cd pkg && zip -qr ../app.zip .)
+          ls -la app.zip
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Upload package and point the app at it
+        run: |
+          set -euo pipefail
+          KEY=$(az storage account keys list -g "$AZURE_RG" -n "$STORAGE_ACCOUNT" --query "[0].value" -o tsv)
+          BLOB="app-${GITHUB_SHA}.zip"
+          az storage blob upload \
+            --account-name "$STORAGE_ACCOUNT" --account-key "$KEY" \
+            --container-name "$CONTAINER" --name "$BLOB" --file app.zip --overwrite -o none
+          EXPIRY=$(date -u -d '+365 days' '+%Y-%m-%dT%H:%MZ')
+          SAS=$(az storage blob generate-sas \
+            --account-name "$STORAGE_ACCOUNT" --account-key "$KEY" \
+            --container-name "$CONTAINER" --name "$BLOB" \
+            --permissions r --expiry "$EXPIRY" --https-only -o tsv)
+          URL="https://${STORAGE_ACCOUNT}.blob.core.windows.net/${CONTAINER}/${BLOB}?${SAS}"
+          az webapp config appsettings set -g "$AZURE_RG" -n "$APP_NAME" \
+            --settings "WEBSITE_RUN_FROM_PACKAGE=${URL}" -o none
+          az webapp restart -g "$AZURE_RG" -n "$APP_NAME"
+
+      - name: Smoke test (via App Gateway / WAF)
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 20); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$API_URL/api/health" || true)
+            echo "try $i: HTTP $code"
+            if [ "$code" = "200" ]; then echo "backend healthy"; exit 0; fi
+            sleep 15
+          done
+          echo "health check did not pass in time"; exit 1

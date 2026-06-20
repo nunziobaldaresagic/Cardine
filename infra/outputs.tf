@@ -42,3 +42,12 @@ output "postgres_fqdn" {
 output "key_vault_name" {
   value = azurerm_key_vault.main.name
 }
+
+output "deploy_storage_account" {
+  description = "Storage account CI uploads the deploy package to."
+  value       = azurerm_storage_account.deploy.name
+}
+
+output "deploy_container" {
+  value = azurerm_storage_container.deploy.name
+}

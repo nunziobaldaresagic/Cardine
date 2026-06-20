@@ -31,6 +31,11 @@ resource "azurerm_linux_web_app" "main" {
     # Route all outbound traffic through the VNet so private endpoints resolve.
     vnet_route_all_enabled = true
 
+    # The backend's package.json start path is inconsistent with its tsconfig
+    # output; run the compiled entrypoint directly. The deploy package preserves
+    # the repo layout so the app's relative mock-json path resolves.
+    app_command_line = "node src/backend/dist/server.js"
+
     application_stack {
       node_version = "20-lts"
     }
@@ -43,6 +48,11 @@ resource "azurerm_linux_web_app" "main" {
   }
 
   tags = var.tags
+
+  # WEBSITE_RUN_FROM_PACKAGE is owned by the GitHub Actions deploy workflow.
+  lifecycle {
+    ignore_changes = [app_settings["WEBSITE_RUN_FROM_PACKAGE"]]
+  }
 }
 
 # Inbound private endpoint for the App Service (App Gateway backend target).

@@ -80,7 +80,7 @@ resource "azurerm_application_gateway" "main" {
   probe {
     name                                      = "probe-appsvc"
     protocol                                  = "Https"
-    path                                      = "/"
+    path                                      = "/api/health"
     pick_host_name_from_backend_http_settings = true
     interval                                  = 30
     timeout                                   = 30
