@@ -49,7 +49,11 @@ jobs:
           cp src/backend/openapi.yaml pkg/src/backend/dist/openapi.yaml
           npm ci --omit=dev --prefix src/backend
           cp -r src/backend/node_modules pkg/src/backend/node_modules
-          cp -r mock-json pkg/mock-json
+          # loader.js (dist/data) reads __dirname/../../../mock-json at import.
+          # With the compiled app under src/backend/, that resolves to
+          # wwwroot/src/mock-json — so place it there, not at the package root.
+          mkdir -p pkg/src
+          cp -r mock-json pkg/src/mock-json
           (cd pkg && zip -qr ../app.zip .)
           ls -la app.zip
 
