@@ -53,12 +53,14 @@ app.get('/api/health', (_req, res) => {
   res.json({ ok: true, version: '0.1.0', env: process.env.NODE_ENV ?? 'development' });
 });
 
+// Route pubbliche — non richiedono token
+app.use('/api/auth', authRouter);
+
 // Validazione token Entra ID — tutte le route successive la richiedono
 app.use('/api', validateToken);
 app.use('/api', resolveActor);
 
 // Route protette
-app.use('/api/auth', authRouter);
 app.use('/api/employees', employeesRouter);
 app.use('/api/career-map', careerMapRouter);
 app.use('/api/employees/:id/proximity', proximityRouter);
