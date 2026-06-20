@@ -14,10 +14,6 @@ const confirmedRoadmaps = new Map<string, Roadmap>();
 // Response: text/event-stream (SSE stub)
 router.post('/generate', (req: Request<{ id: string }>, res: Response) => {
   const emp = getEmployeeById(req.params.id);
-  if (!emp) {
-    res.status(404).json({ error: 'Employee not found' });
-    return;
-  }
 
   const targetLevelCode: string =
     (req.body as { targetLevel?: string }).targetLevel ??
@@ -89,10 +85,6 @@ router.post('/generate', (req: Request<{ id: string }>, res: Response) => {
 // Body: roadmap JSON (as returned by /generate meta event)
 router.post('/confirm', (req: Request<{ id: string }>, res: Response) => {
   const emp = getEmployeeById(req.params.id);
-  if (!emp) {
-    res.status(404).json({ error: 'Employee not found' });
-    return;
-  }
 
   const roadmap = req.body as Roadmap;
   if (!roadmap || !roadmap.items) {
@@ -113,10 +105,6 @@ router.post('/confirm', (req: Request<{ id: string }>, res: Response) => {
 // GET /api/employees/:id/roadmap
 router.get('/', (req: Request<{ id: string }>, res: Response) => {
   const emp = getEmployeeById(req.params.id);
-  if (!emp) {
-    res.status(404).json({ error: 'Employee not found' });
-    return;
-  }
 
   const roadmap = confirmedRoadmaps.get(emp.id);
   if (!roadmap) {

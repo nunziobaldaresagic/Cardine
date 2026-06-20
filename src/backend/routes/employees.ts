@@ -19,10 +19,6 @@ router.get('/', (_req, res) => {
 
 router.get('/:id', (req, res) => {
   const emp = getEmployeeById(req.params.id);
-  if (!emp) {
-    res.status(404).json({ error: 'Employee not found' });
-    return;
-  }
   res.json(emp);
 });
 

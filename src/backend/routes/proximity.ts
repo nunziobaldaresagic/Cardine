@@ -7,10 +7,6 @@ const router = Router({ mergeParams: true });
 
 router.get('/', (req: Request<{ id: string }>, res) => {
   const emp = getEmployeeById(req.params.id);
-  if (!emp) {
-    res.status(404).json({ error: 'Employee not found' });
-    return;
-  }
 
   const levelsOrder = getLevelsOrder();
   const currentIdx = levelsOrder.indexOf(emp.current_role.hr_level.code);

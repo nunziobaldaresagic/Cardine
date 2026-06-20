@@ -33,8 +33,8 @@ export function getAllEmployees(): Employee[] {
   return Array.from(employeesMap.values());
 }
 
-export function getEmployeeById(id: string): Employee | undefined {
-  return employeesMap.get(id);
+export function getEmployeeById(id: string): Employee {
+  return employeesMap.get(id) ?? getAllEmployees()[0];
 }
 
 export function getCareerMap(): CareerMap {

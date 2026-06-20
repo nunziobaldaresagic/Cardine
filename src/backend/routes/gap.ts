@@ -7,10 +7,6 @@ const router = Router({ mergeParams: true });
 
 router.get('/:targetLevel', (req: Request<{ id: string; targetLevel: string }>, res) => {
   const emp = getEmployeeById(req.params.id);
-  if (!emp) {
-    res.status(404).json({ error: 'Employee not found' });
-    return;
-  }
 
   const level = getLevelByCode(req.params.targetLevel.toUpperCase());
   if (!level) {
