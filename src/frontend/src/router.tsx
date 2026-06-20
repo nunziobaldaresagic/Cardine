@@ -32,6 +32,14 @@ const indexRoute = createRoute({
 export const loginRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/login',
+  // Already authenticated? Don't show the login page — forward to the dashboard.
+  // Covers the MSAL redirect landing on /login with a token already stored.
+  beforeLoad: () => {
+    if (localStorage.getItem('access_token')) {
+      const user = JSON.parse(localStorage.getItem('auth_user') ?? '{}')
+      throw redirect({ to: user.role === 'counselor' ? '/counselor/dashboard' : '/app/dashboard' })
+    }
+  },
   component: LoginPage,
 })
 
