@@ -1,0 +1,11 @@
+# Copy to demo.tfvars and fill in your own values.
+#   cp env/demo.tfvars.example env/demo.tfvars
+subscription_id     = "00000000-0000-0000-0000-000000000000" # target subscription
+tenant_id           = "00000000-0000-0000-0000-000000000000" # Azure AD tenant
+location            = "westeurope"
+postgres_location   = "northeurope" # some subs are offer-restricted for PG in westeurope
+resource_group_name = "rg-yellow"
+prefix              = "cardine"
+environment         = "demo"
+deploy_openai       = false
+# api_custom_domain = "api.cardine.azlabs.it"

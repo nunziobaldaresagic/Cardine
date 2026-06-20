@@ -1,0 +1,22 @@
+.terraform/
+# .terraform.lock.hcl is intentionally committed for reproducible provider versions.
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfplan
+*.auto.tfvars
+override.tf
+override.tf.json
+
+# Real var files carry the subscription/tenant IDs — public repo, keep them out.
+env/*.tfvars
+!env/*.tfvars.example
+
+# Cert material / secrets (custom domain HTTPS)
+.acme/
+*.pfx
+.pfxpass
+acme.sh
+renew*.log
+apply*.log
+pgtest*.log
