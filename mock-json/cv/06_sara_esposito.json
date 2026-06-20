@@ -1,0 +1,142 @@
+{
+  "id": "06_sara_esposito",
+  "personal": {
+    "name": "Sara Esposito",
+    "email": "sara.esposito@example.com",
+    "location": "Napoli"
+  },
+  "current_role": {
+    "title": "Analista Funzionale Senior / Project Coordinator",
+    "company": "Meridiana Digital",
+    "since": "2022-01",
+    "hr_level": {
+      "code": "F",
+      "label": "Senior Consultant"
+    }
+  },
+  "total_years_experience": 6,
+  "education": [
+    {
+      "degree": "Laurea Magistrale in Economia e Management",
+      "institution": "Università Federico II di Napoli",
+      "year": 2018
+    },
+    {
+      "degree": "Corso di specializzazione in Business Analysis",
+      "institution": null,
+      "year": 2020
+    }
+  ],
+  "certifications": [
+    {
+      "name": "PSM I — Professional Scrum Master",
+      "code": "PSM I"
+    },
+    {
+      "name": "Certificazione BPMN",
+      "code": null
+    }
+  ],
+  "technical_skills": {
+    "languages": [
+      { "name": "SQL", "level": "basic" }
+    ],
+    "frameworks_libraries": [],
+    "tools": [
+      { "name": "Jira", "level": "advanced" },
+      { "name": "Confluence", "level": "advanced" },
+      { "name": "Figma (lettura)", "level": "basic" },
+      { "name": "Excel", "level": "advanced" }
+    ],
+    "cloud": [],
+    "databases": [
+      { "name": "SQL (query semplici)", "level": "basic" }
+    ],
+    "methodologies": [
+      { "name": "Scrum / Agile", "level": "advanced" },
+      { "name": "Raccolta e analisi requisiti", "level": "advanced" },
+      { "name": "Redazione specifiche funzionali", "level": "advanced" },
+      { "name": "User story writing", "level": "advanced" },
+      { "name": "BPMN (modellazione processi)", "level": "intermediate-advanced" },
+      { "name": "Gestione stakeholder", "level": "advanced" },
+      { "name": "Sprint planning e retrospettive", "level": "advanced" }
+    ]
+  },
+  "soft_skills": [
+    "comunicazione",
+    "mediazione business-tech",
+    "organizzazione",
+    "relazione con il cliente",
+    "facilitazione",
+    "leadership informale"
+  ],
+  "languages": [
+    { "language": "Italiano", "level": "native" },
+    { "language": "Inglese", "level": "C1" },
+    { "language": "Spagnolo", "level": "B1" }
+  ],
+  "leadership_experience": {
+    "has_led_people": true,
+    "details": "Coordinamento de facto di un team di 5 persone (sviluppatori e tester): pianificazione sprint, SAL con il cliente, facilitazione retrospettive e planning. Nessun ruolo formale di PM o people manager. Interesse dichiarato a formalizzare sia il percorso PM sia la gestione delle persone."
+  },
+  "key_achievements": [
+    "Raccolta e formalizzazione requisiti per progetti software settore pubblico e bancario",
+    "Mediazione continuativa tra business e team tecnico su vincoli e aspettative",
+    "Coordinamento di fatto di un team di 5 persone (sprint, SAL cliente, cerimonie Agile)",
+    "Competenza in modellazione processi con BPMN"
+  ],
+  "self_assessed_gaps": [
+    "Nessuna esperienza di sviluppo software",
+    "Conoscenza cloud e architettura solo concettuale",
+    "Nessun ruolo formale di Project Manager o People Manager",
+    "Certificazione PM formale non ancora conseguita (es. PMP, PRINCE2)"
+  ],
+  "career_path": {
+    "current_level": {
+      "code": "F",
+      "label": "Senior Consultant"
+    },
+    "suggested_next_level": {
+      "code": "H",
+      "label": "Manager"
+    },
+    "estimated_timeframe_months": 12,
+    "growth_areas": [
+      {
+        "area": "Formalizzare il ruolo di Project Manager",
+        "priority": "high",
+        "actions": [
+          "Conseguire certificazione PM formale (PMP o PRINCE2)",
+          "Chiedere il riconoscimento formale del ruolo di PM / Delivery Lead sul progetto attuale",
+          "Strutturare reportistica formale su budget, rischi e avanzamento"
+        ]
+      },
+      {
+        "area": "People management",
+        "priority": "high",
+        "actions": [
+          "Strutturare 1:1 regolari con i membri del team coordinato",
+          "Definire obiettivi di crescita per ciascun membro del team",
+          "Acquisire competenze formali di people management (feedback, performance review)"
+        ]
+      },
+      {
+        "area": "Product Ownership",
+        "priority": "medium",
+        "actions": [
+          "Approfondire il ruolo di Product Owner (backlog ownership, prioritizzazione con impatto business)",
+          "Conseguire PSPO I (Professional Scrum Product Owner)",
+          "Collaborare più strettamente con i Product Owner aziendali"
+        ]
+      },
+      {
+        "area": "Cultura tecnica (per efficacia come PM/PO)",
+        "priority": "medium",
+        "actions": [
+          "Approfondire concetti di architettura cloud a livello strategico (non tecnico)",
+          "Seguire un corso base di API e microservizi per dialogare meglio con i team tecnici senior"
+        ]
+      }
+    ]
+  }
+}

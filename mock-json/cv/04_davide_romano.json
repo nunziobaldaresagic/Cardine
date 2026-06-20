@@ -1,0 +1,142 @@
+{
+  "id": "04_davide_romano",
+  "personal": {
+    "name": "Davide Romano",
+    "email": "davide.romano@example.com",
+    "location": "Roma"
+  },
+  "current_role": {
+    "title": "Senior Software Engineer / Referente Architetturale",
+    "company": "CloudForge Italia",
+    "since": "2022-05",
+    "hr_level": {
+      "code": "F",
+      "label": "Senior Consultant"
+    }
+  },
+  "total_years_experience": 8,
+  "education": [
+    {
+      "degree": "Laurea Magistrale in Ingegneria Informatica",
+      "institution": "Sapienza Università di Roma",
+      "year": 2017
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Microsoft Certified: Azure Solutions Architect Expert",
+      "code": "AZ-305"
+    },
+    {
+      "name": "Microsoft Certified: DevOps Engineer Expert",
+      "code": null
+    }
+  ],
+  "technical_skills": {
+    "languages": [
+      { "name": "C#", "level": "advanced" },
+      { "name": "Node.js", "level": "advanced" }
+    ],
+    "frameworks_libraries": [
+      { "name": ".NET", "level": "advanced" }
+    ],
+    "tools": [
+      { "name": "Docker", "level": "advanced" },
+      { "name": "Kubernetes / AKS", "level": "advanced" },
+      { "name": "Bicep", "level": "advanced" },
+      { "name": "Terraform", "level": "advanced" },
+      { "name": "Application Insights", "level": "advanced" }
+    ],
+    "cloud": [
+      { "name": "Azure Service Bus", "level": "advanced" },
+      { "name": "Azure Event Grid", "level": "advanced" },
+      { "name": "Azure Kubernetes Service (AKS)", "level": "advanced" },
+      { "name": "Azure Functions", "level": "advanced" },
+      { "name": "Azure API Management", "level": "intermediate" }
+    ],
+    "databases": [],
+    "methodologies": [
+      { "name": "Architettura event-driven", "level": "advanced" },
+      { "name": "Domain-Driven Design (DDD)", "level": "advanced" },
+      { "name": "Infrastructure as Code (IaC)", "level": "advanced" },
+      { "name": "ADR (Architecture Decision Records)", "level": "advanced" },
+      { "name": "Osservabilità / Observability", "level": "advanced" },
+      { "name": "Sistemi distribuiti", "level": "advanced" }
+    ]
+  },
+  "soft_skills": [
+    "system design",
+    "documentazione architetturale",
+    "comunicazione con CTO",
+    "facilitazione tecnica cross-team",
+    "trade-off analysis"
+  ],
+  "languages": [
+    { "language": "Italiano", "level": "native" },
+    { "language": "Inglese", "level": "C1" }
+  ],
+  "leadership_experience": {
+    "has_led_people": false,
+    "details": "Coordina tecnicamente fino a 4 team in fase di design senza responsabilità gerarchica. Nessuna people management formale. Preferisce il design tecnico al management. Lacune dichiarate su: gestione diretta persone, definizione obiettivi/percorsi di carriera per un team, budgeting."
+  },
+  "key_achievements": [
+    "Redesign architettura piattaforma pagamento da monolite a event-driven (Azure Service Bus/Event Grid): throughput da ~200 a ~2.000 tx/sec",
+    "Definizione standard IaC aziendali (Bicep + Terraform) su 3 ambienti",
+    "Guida delle decisioni di trade-off architetturale presentate al CTO con ADR formali",
+    "Sessioni interne di system design e template di documentazione architetturale",
+    "Implementazione osservabilità con Application Insights e dashboard custom"
+  ],
+  "self_assessed_gaps": [
+    "Gestione diretta di persone (people management)",
+    "Definizione obiettivi e percorsi di carriera per un team",
+    "Budgeting e pianificazione finanziaria",
+    "Nessuna esperienza multi-cloud"
+  ],
+  "career_path": {
+    "current_level": {
+      "code": "F",
+      "label": "Senior Consultant"
+    },
+    "suggested_next_level": {
+      "code": "H",
+      "label": "Manager"
+    },
+    "estimated_timeframe_months": 18,
+    "growth_areas": [
+      {
+        "area": "People leadership (colmare il gap dichiarato)",
+        "priority": "high",
+        "actions": [
+          "Assumere formalmente la responsabilità di crescita di 2-3 engineer (1:1, piani di carriera)",
+          "Partecipare al processo di hiring come interviewer tecnico",
+          "Sperimentare Engineering Manager responsibilities in modo graduale"
+        ]
+      },
+      {
+        "area": "Governance architetturale a livello organizzativo",
+        "priority": "high",
+        "actions": [
+          "Definire e presidiare gli standard architetturali dell'intera organizzazione engineering",
+          "Istituire o partecipare a un Architecture Review Board",
+          "Pubblicare internamente whitepaper e linee guida su pattern chiave"
+        ]
+      },
+      {
+        "area": "Budgeting e pianificazione strategica",
+        "priority": "medium",
+        "actions": [
+          "Partecipare alle discussioni di budget cloud e infrastruttura",
+          "Imparare a stimare e giustificare il TCO delle scelte architetturali"
+        ]
+      },
+      {
+        "area": "Influenza esterna",
+        "priority": "low",
+        "actions": [
+          "Parlare a conferenze o scrivere articoli tecnici",
+          "Contribuire a open source rilevante"
+        ]
+      }
+    ]
+  }
+}

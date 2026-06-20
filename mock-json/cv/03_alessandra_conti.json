@@ -1,0 +1,139 @@
+{
+  "id": "03_alessandra_conti",
+  "personal": {
+    "name": "Alessandra Conti",
+    "email": "a.conti@example.com",
+    "location": "Torino",
+    "linkedin": "/in/alessandraconti"
+  },
+  "current_role": {
+    "title": "Senior Backend Developer",
+    "company": "Sferanet Consulting",
+    "since": "2021-09",
+    "hr_level": {
+      "code": "F",
+      "label": "Senior Consultant"
+    }
+  },
+  "total_years_experience": 7,
+  "education": [
+    {
+      "degree": "Laurea Magistrale in Ingegneria Informatica",
+      "institution": "Politecnico di Torino",
+      "year": 2017
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Microsoft Certified: Azure Developer Associate",
+      "code": "AZ-204"
+    }
+  ],
+  "technical_skills": {
+    "languages": [
+      { "name": "C#", "level": "advanced" },
+      { "name": "SQL", "level": "advanced" },
+      { "name": "JavaScript", "level": "beginner" }
+    ],
+    "frameworks_libraries": [
+      { "name": ".NET / ASP.NET Core", "level": "advanced" },
+      { "name": "Entity Framework Core", "level": "advanced" },
+      { "name": "Polly", "level": "intermediate" }
+    ],
+    "tools": [
+      { "name": "Azure DevOps", "level": "intermediate" },
+      { "name": "Git", "level": "advanced" }
+    ],
+    "cloud": [
+      { "name": "Azure App Service", "level": "advanced" },
+      { "name": "Azure SQL", "level": "advanced" },
+      { "name": "Azure Service Bus", "level": "intermediate" },
+      { "name": "Azure Functions", "level": "intermediate" }
+    ],
+    "databases": [
+      { "name": "Azure SQL / SQL Server", "level": "advanced" },
+      { "name": "PostgreSQL", "level": "basic" }
+    ],
+    "methodologies": [
+      { "name": "REST API design & versioning", "level": "advanced" },
+      { "name": "Microservizi", "level": "intermediate-advanced" },
+      { "name": "TDD", "level": "intermediate" },
+      { "name": "CI/CD (Azure DevOps)", "level": "intermediate" },
+      { "name": "Pattern di resilienza (retry, circuit breaker)", "level": "intermediate" }
+    ]
+  },
+  "soft_skills": [
+    "mentoring",
+    "code review",
+    "comunicazione tecnica con stakeholder",
+    "documentazione",
+    "mediazione business-tech"
+  ],
+  "languages": [
+    { "language": "Italiano", "level": "native" },
+    { "language": "Inglese", "level": "C1" }
+  ],
+  "leadership_experience": {
+    "has_led_people": true,
+    "details": "Mentoring continuativo su 3 sviluppatori junior/mid: pairing, code review, linee guida di coding. Referente tecnico nei refinement con il PO. Nessun ruolo formale di lead o engineering manager."
+  },
+  "key_achievements": [
+    "Progettazione microservizi .NET su Azure per sistema di fatturazione enterprise (utilities)",
+    "Definizione contratti API REST e strategia di versioning condivisa tra 3 team",
+    "Riduzione del 40% dei tempi di risposta sui report critici tramite ottimizzazione query/schema",
+    "Introduzione pattern di resilienza (Polly: retry, circuit breaker)",
+    "Mentoring di 3 sviluppatori junior/mid con definizione linee guida di coding"
+  ],
+  "self_assessed_gaps": [
+    "Nessun ruolo formale di tech lead o engineering manager",
+    "Conoscenza frontend limitata",
+    "Conoscenza cloud limitata a stack Azure (no multi-cloud)"
+  ],
+  "career_path": {
+    "current_level": {
+      "code": "F",
+      "label": "Senior Consultant"
+    },
+    "suggested_next_level": {
+      "code": "H",
+      "label": "Manager"
+    },
+    "estimated_timeframe_months": 12,
+    "growth_areas": [
+      {
+        "area": "Architettura cross-team",
+        "priority": "high",
+        "actions": [
+          "Ampliare il raggio d'azione architetturale oltre il singolo team",
+          "Redigere ADR (Architecture Decision Records) condivise",
+          "Confrontarsi con il CTO / Principal Engineer su decisioni strategiche"
+        ]
+      },
+      {
+        "area": "Formale tech leadership",
+        "priority": "high",
+        "actions": [
+          "Candidarsi per ruolo formale di Tech Lead su un team",
+          "Strutturare un piano di crescita per i colleghi junior/mid seguiti"
+        ]
+      },
+      {
+        "area": "Design di sistemi distribuiti",
+        "priority": "medium",
+        "actions": [
+          "Approfondire event-driven architecture e CQRS",
+          "Studiare DDD (Domain-Driven Design) applicato ai microservizi",
+          "Conseguire AZ-305 (Azure Solutions Architect Expert)"
+        ]
+      },
+      {
+        "area": "Influenza organizzativa",
+        "priority": "medium",
+        "actions": [
+          "Proporre e guidare iniziative di miglioramento tecnico a livello dipartimentale",
+          "Partecipare a hiring e valutazione tecnica dei candidati"
+        ]
+      }
+    ]
+  }
+}

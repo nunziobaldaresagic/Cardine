@@ -1,0 +1,112 @@
+{
+  "id": "01_giulia_ferraro",
+  "personal": {
+    "name": "Giulia Ferraro",
+    "email": "g.ferraro@example.com",
+    "location": "Bologna"
+  },
+  "current_role": {
+    "title": "Junior Frontend Developer",
+    "company": "Innovatech S.r.l.",
+    "since": "2025-01",
+    "hr_level": {
+      "code": "B",
+      "label": "Junior / Analyst"
+    }
+  },
+  "total_years_experience": 1.5,
+  "education": [
+    {
+      "degree": "Laurea Triennale in Informatica",
+      "institution": "Università di Bologna",
+      "year": 2024,
+      "thesis": "Accessibilità nelle Single Page Application"
+    }
+  ],
+  "certifications": [],
+  "technical_skills": {
+    "languages": [
+      { "name": "JavaScript", "level": "intermediate" },
+      { "name": "HTML", "level": "intermediate" },
+      { "name": "CSS", "level": "intermediate" },
+      { "name": "TypeScript", "level": "beginner" }
+    ],
+    "frameworks_libraries": [
+      { "name": "React", "level": "intermediate" },
+      { "name": "Tailwind CSS", "level": "intermediate" }
+    ],
+    "tools": [
+      { "name": "Git", "level": "beginner-intermediate" },
+      { "name": "Figma", "level": "beginner" },
+      { "name": "Jest", "level": "beginner" },
+      { "name": "React Testing Library", "level": "beginner" }
+    ],
+    "cloud": [],
+    "methodologies": [
+      { "name": "Scrum", "level": "participant" }
+    ]
+  },
+  "soft_skills": [
+    "learning agility",
+    "attention to detail",
+    "collaboration",
+    "accessibility awareness"
+  ],
+  "languages": [
+    { "language": "Italiano", "level": "native" },
+    { "language": "Inglese", "level": "B2" }
+  ],
+  "leadership_experience": {
+    "has_led_people": false,
+    "details": "Nessuna esperienza di coordinamento. Partecipazione passiva alle cerimonie Scrum."
+  },
+  "key_achievements": [
+    "Sviluppo componenti React per dashboard SaaS cliente",
+    "Implementazione interfacce responsive da Figma",
+    "Prime esperienze con test unitari in Jest/React Testing Library"
+  ],
+  "self_assessed_gaps": [
+    "TypeScript ancora a livello base",
+    "Autonomia tecnica limitata (lavora in affiancamento)",
+    "Nessuna esperienza backend",
+    "Testing ancora guidato da senior"
+  ],
+  "career_path": {
+    "current_level": {
+      "code": "B",
+      "label": "Junior / Analyst"
+    },
+    "suggested_next_level": {
+      "code": "C",
+      "label": "Junior Avanzato / Exp. Analyst"
+    },
+    "estimated_timeframe_months": 12,
+    "growth_areas": [
+      {
+        "area": "TypeScript",
+        "priority": "high",
+        "actions": ["Approfondire generics, utility types, strict mode", "Adottare TypeScript in autonomia su nuove feature"]
+      },
+      {
+        "area": "Testing",
+        "priority": "high",
+        "actions": ["Scrivere test in autonomia senza affiancamento", "Introdursi ai test di integrazione"]
+      },
+      {
+        "area": "Architettura frontend",
+        "priority": "medium",
+        "actions": ["Studiare pattern come compound components e custom hooks", "Partecipare attivamente ai design tecnici del team"]
+      },
+      {
+        "area": "Backend basics",
+        "priority": "medium",
+        "actions": ["Conoscere le basi di REST API e HTTP", "Sperimentare con Node.js o un backend semplice"]
+      },
+      {
+        "area": "Autonomia e ownership",
+        "priority": "high",
+        "actions": ["Prendere ownership di una feature completa end-to-end lato frontend", "Proporre soluzioni nei daily e nelle review"]
+      }
+    ]
+  }
+}

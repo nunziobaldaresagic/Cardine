@@ -1,0 +1,888 @@
+{
+  "version": "1.0",
+  "description": "Mappa di career progression aziendale. Per ogni livello HR definisce: il prossimo step e gli obiettivi da completare per raggiungerlo.",
+  "levels_order": ["B", "C", "D", "F", "H", "I"],
+  "levels": [
+    {
+      "code": "B",
+      "label": "Junior / Analyst",
+      "description": "Figura in ingresso, lavora sotto supervisione continuativa. Si occupa di task definiti e circoscritti, impara le pratiche del team e acquisisce autonomia progressiva.",
+      "next_level": {
+        "code": "C",
+        "label": "Junior Avanzato / Exp. Analyst"
+      },
+      "objectives_to_reach_next_level": [
+        {
+          "id": "B-01",
+          "category": "autonomia_tecnica",
+          "title": "Feature end-to-end in autonomia",
+          "description": "Completare almeno una feature di media complessità (frontend + backend, o full stack del proprio dominio) in autonomia, dalla stima al merge in main, senza supervisione attiva.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "B-02",
+          "category": "quality",
+          "title": "Testing autonomo",
+          "description": "Scrivere test unitari per il proprio codice in autonomia (senza che sia il senior a scriverli o guidarli passo per passo). Coverage minima concordata col team.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "B-03",
+          "category": "quality",
+          "title": "Incorporare feedback di code review",
+          "description": "Dimostrare capacità di recepire, comprendere e applicare correttamente i commenti delle code review, con miglioramento progressivo documentabile.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "B-04",
+          "category": "technical_skills",
+          "title": "Padronanza intermediate sul linguaggio/framework principale",
+          "description": "Raggiungere un livello intermediate documentabile sullo stack principale del team (es. TypeScript strict, pattern React avanzati, oppure C# intermedio, ecc.).",
+          "priority": "mandatory"
+        },
+        {
+          "id": "B-05",
+          "category": "technical_skills",
+          "title": "Principi SOLID e clean code",
+          "description": "Dimostrare comprensione e applicazione pratica dei principi SOLID (o equivalenti per il proprio stack) nel codice prodotto.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "B-06",
+          "category": "tooling",
+          "title": "Padronanza del ciclo Git e branching strategy",
+          "description": "Gestire autonomamente Git flow, branching strategy del team, rebase/merge, risoluzione conflitti complessi.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "B-07",
+          "category": "delivery",
+          "title": "Autonomia nell'ambiente di sviluppo e deploy",
+          "description": "Saper configurare in autonomia il proprio ambiente di sviluppo, eseguire build, linting, test e deploy verso ambienti non produttivi senza assistenza.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "B-08",
+          "category": "delivery",
+          "title": "Stima dei task con precisione accettabile",
+          "description": "Stimare i propri task con una precisione di ±30% rispetto all'effettivo su almeno 5 sprint consecutivi.",
+          "priority": "recommended"
+        },
+        {
+          "id": "B-09",
+          "category": "problem_solving",
+          "title": "Debugging autonomo con analisi root cause",
+          "description": "Risolvere almeno 3 bug non banali (non typo o errori ovvi) con documentazione della root cause e della soluzione adottata.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "B-10",
+          "category": "problem_solving",
+          "title": "Saper leggere e interpretare log e errori",
+          "description": "Dimostrare capacità di analizzare stack trace, log applicativi e messaggi di errore per individuare autonomamente la causa di un problema.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "B-11",
+          "category": "agile",
+          "title": "Partecipazione attiva alle cerimonie Agile",
+          "description": "Non limitarsi alla presenza: portare aggiornamenti chiari nei daily, sollevare blocchi tempestivamente, contribuire con domande e proposte durante le sprint review.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "B-12",
+          "category": "agile",
+          "title": "Gestione autonoma del proprio backlog su Jira",
+          "description": "Mantenere aggiornati i propri ticket (stato, stima residua, commenti) senza sollecitazioni dal team lead.",
+          "priority": "recommended"
+        },
+        {
+          "id": "B-13",
+          "category": "documentation",
+          "title": "Documentare il proprio lavoro",
+          "description": "Produrre README, commenti significativi nel codice e aggiornare almeno 3 pagine della wiki/Confluence di progetto nell'arco di un semestre.",
+          "priority": "recommended"
+        },
+        {
+          "id": "B-14",
+          "category": "knowledge_sharing",
+          "title": "Tech sharing interno",
+          "description": "Presentare al team almeno una tech sharing session (30 minuti) su un argomento approfondito personalmente (libreria, tool, pattern, ecc.).",
+          "priority": "recommended"
+        },
+        {
+          "id": "B-15",
+          "category": "proactivity",
+          "title": "Proporre almeno una miglioria",
+          "description": "Identificare e proporre proattivamente almeno una miglioria al codebase, al processo del team o agli strumenti, con motivazione scritta.",
+          "priority": "recommended"
+        },
+        {
+          "id": "B-16",
+          "category": "certifications",
+          "title": "Certificazione entry-level",
+          "description": "Conseguire almeno una certificazione entry-level pertinente al proprio stack (es. AZ-900, AWS Cloud Practitioner, PSM I, Google Associate, ISTQB Foundation, ecc.).",
+          "priority": "recommended"
+        },
+        {
+          "id": "B-17",
+          "category": "learning",
+          "title": "Corso formativo strutturato completato",
+          "description": "Completare almeno un corso formativo strutturato (tecnico o metodologico) con verifica dell'apprendimento (quiz, progetto, certificato).",
+          "priority": "recommended"
+        },
+        {
+          "id": "B-18",
+          "category": "english",
+          "title": "Inglese tecnico scritto B2+",
+          "description": "Dimostrare capacità di scrivere ticket, commenti, documentazione e email tecniche in inglese in modo comprensibile e professionale.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "B-19",
+          "category": "quality",
+          "title": "Valutazione positiva dal mentor/senior",
+          "description": "Ricevere una valutazione positiva documentata dal proprio senior/mentor sulla qualità del codice e sul progresso nel semestre.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "B-20",
+          "category": "autonomia_tecnica",
+          "title": "Onboarding tecnico completo del progetto",
+          "description": "Dimostrare piena comprensione dell'architettura del progetto, dei flussi di deploy e delle procedure di debug/monitoring senza necessità di guida.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "B-21",
+          "category": "proactivity",
+          "title": "Rilevare blocchi in anticipo",
+          "description": "Dimostrare proattività nell'individuare e comunicare blocchi prima che impattino il team o la sprint (almeno 3 episodi documentati).",
+          "priority": "recommended"
+        },
+        {
+          "id": "B-22",
+          "category": "technical_skills",
+          "title": "Conoscenza base del dominio applicativo del progetto",
+          "description": "Saper spiegare in modo semplice cosa fa il prodotto/sistema su cui si lavora, le sue funzionalità principali e i principali utenti/flussi.",
+          "priority": "mandatory"
+        }
+      ]
+    },
+    {
+      "code": "C",
+      "label": "Junior Avanzato / Exp. Analyst",
+      "description": "Figura con autonomia consolidata sui task standard. Inizia a fare da riferimento per i nuovi ingressi, contribuisce attivamente alle decisioni di team e interagisce con il cliente in modo guidato.",
+      "next_level": {
+        "code": "D",
+        "label": "Intermediate / Consultant"
+      },
+      "objectives_to_reach_next_level": [
+        {
+          "id": "C-01",
+          "category": "delivery",
+          "title": "Ownership di una user story complessa end-to-end",
+          "description": "Gestire in completa autonomia almeno una user story di alta complessità: dal refinement all'UAT con il cliente, inclusi design tecnico, implementazione, test e deploy.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-02",
+          "category": "mentoring",
+          "title": "Onboardare un collega junior",
+          "description": "Guidare autonomamente l'onboarding tecnico di almeno un nuovo collega B, rendendolo operativo sul progetto entro i tempi concordati.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-03",
+          "category": "quality",
+          "title": "Code review costruttive su PR junior",
+          "description": "Effettuare almeno 20 code review costruttive su PR di colleghi B in 6 mesi, con commenti che spiegano il perché e propongono alternative, non solo identificano problemi.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-04",
+          "category": "technical_skills",
+          "title": "Secondo dominio tecnologico acquisito",
+          "description": "Acquisire competenze solide in almeno un secondo dominio tecnologico (es. se frontend, basi backend; se backend, conoscenza cloud o database avanzato; se DevOps, scripting applicativo).",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-05",
+          "category": "architecture",
+          "title": "Progettare la struttura di un modulo",
+          "description": "Progettare autonomamente la struttura di almeno un modulo/componente significativo e difendere le scelte in una review tecnica col team.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-06",
+          "category": "architecture",
+          "title": "Pattern architetturali applicati",
+          "description": "Dimostrare conoscenza e applicazione pratica di almeno 3 pattern architetturali (MVC, Repository, CQRS base, Factory, Observer, ecc.) nel codice prodotto.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-07",
+          "category": "delivery",
+          "title": "Autonomia nel ciclo completo di delivery",
+          "description": "Gestire autonomamente l'intero ciclo: sviluppo → test → code review → deploy → monitoring, senza supervisione su nessun passaggio.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-08",
+          "category": "delivery",
+          "title": "Stima attività con precisione ±20%",
+          "description": "Stimare user story e task con una precisione di ±20% rispetto all'effettivo su almeno 3 sprint consecutivi, usando metodologia strutturata (planning poker, story points).",
+          "priority": "recommended"
+        },
+        {
+          "id": "C-09",
+          "category": "problem_solving",
+          "title": "Debugging avanzato",
+          "description": "Risolvere autonomamente problemi complessi legati a performance, concorrenza, integrazioni di terze parti o comportamenti intermittenti, con documentazione della soluzione.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-10",
+          "category": "technical_skills",
+          "title": "Gestione del debito tecnico",
+          "description": "Saper identificare debito tecnico nel codebase, documentarlo e proporre un piano di remediation concreto al team.",
+          "priority": "recommended"
+        },
+        {
+          "id": "C-11",
+          "category": "client",
+          "title": "Interazione diretta con il cliente su temi tecnici",
+          "description": "Gestire autonomamente almeno 3 sessioni di chiarimento tecnico con il cliente (call, meeting, email thread), senza necessità di supervisione del senior.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-12",
+          "category": "communication",
+          "title": "Comunicare temi tecnici a interlocutori non tecnici",
+          "description": "Dimostrare capacità di spiegare problemi o scelte tecniche a figure non tecniche (PM, cliente business) in modo comprensibile e senza gergo eccessivo.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-13",
+          "category": "agile",
+          "title": "Contribuire alla definizione dei criteri di accettazione",
+          "description": "Partecipare attivamente ai refinement con contributi concreti: domande che migliorano la qualità delle storie, proposta di acceptance criteria, individuazione di casi edge.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-14",
+          "category": "standards",
+          "title": "Contribuire alle linee guida tecniche del team",
+          "description": "Contribuire alla definizione o all'aggiornamento di almeno una linea guida tecnica del team (coding conventions, best practice, template di testing, ecc.).",
+          "priority": "recommended"
+        },
+        {
+          "id": "C-15",
+          "category": "documentation",
+          "title": "Documentazione tecnica leggibile da altri team",
+          "description": "Produrre almeno un documento tecnico (API docs, integration guide, runbook) di qualità sufficiente a essere usato da un team esterno senza ulteriori spiegazioni.",
+          "priority": "recommended"
+        },
+        {
+          "id": "C-16",
+          "category": "knowledge_sharing",
+          "title": "Tech talk interna approfondita",
+          "description": "Presentare al team almeno una tech talk di 45+ minuti su un argomento di approfondimento personale, con slide e materiale di supporto.",
+          "priority": "recommended"
+        },
+        {
+          "id": "C-17",
+          "category": "proactivity",
+          "title": "Iniziativa di miglioramento implementata",
+          "description": "Proporre e portare a completamento almeno un'iniziativa di miglioramento (automazione pipeline, refactoring significativo, introduzione di un tool) con impatto misurabile.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-18",
+          "category": "hiring",
+          "title": "Partecipare a colloqui tecnici come osservatore",
+          "description": "Partecipare a almeno 2 colloqui tecnici di selezione in veste di osservatore, con feedback scritto consegnato dopo ogni sessione.",
+          "priority": "recommended"
+        },
+        {
+          "id": "C-19",
+          "category": "certifications",
+          "title": "Certificazione associate/professional",
+          "description": "Conseguire almeno una certificazione di livello associate o professional pertinente al proprio stack (es. AZ-204, AZ-104, CKA, AWS SAA, PSM II, ecc.).",
+          "priority": "recommended"
+        },
+        {
+          "id": "C-20",
+          "category": "english",
+          "title": "Inglese parlato B2+ nelle interazioni di progetto",
+          "description": "Condurre in inglese almeno 3 meeting o sessioni tecniche con clienti o colleghi internazionali senza difficoltà bloccanti nella comunicazione.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-21",
+          "category": "delivery",
+          "title": "Rispetto delle scadenze senza supervisione",
+          "description": "Dimostrare affidabilità nel rispetto delle scadenze concordate per 3 sprint consecutivi senza necessità di follow-up da parte del lead.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "C-22",
+          "category": "client",
+          "title": "Partecipare a una valutazione di fattibilità tecnica",
+          "description": "Contribuire a una valutazione di fattibilità tecnica per un cliente (RFP, assessment, pre-sales) fornendo analisi o stime scritte.",
+          "priority": "recommended"
+        },
+        {
+          "id": "C-23",
+          "category": "ownership",
+          "title": "Ownership di un'area funzionale del progetto",
+          "description": "Essere riconosciuto dal team come il referente per almeno un modulo o area funzionale del progetto, con responsabilità sulla sua qualità e aggiornamento.",
+          "priority": "mandatory"
+        }
+      ]
+    },
+    {
+      "code": "D",
+      "label": "Intermediate / Consultant",
+      "description": "Figura con solida autonomia tecnica e prime esperienze di leadership informale. Gestisce deliverable complessi, mentora i junior, interagisce con il cliente e contribuisce alle decisioni architetturali del team.",
+      "next_level": {
+        "code": "F",
+        "label": "Senior Consultant"
+      },
+      "objectives_to_reach_next_level": [
+        {
+          "id": "D-01",
+          "category": "architecture",
+          "title": "Progettare e guidare l'implementazione di una componente architetturale complessa",
+          "description": "Progettare autonomamente una componente architetturale significativa (es. modulo di integrazione, layer di autenticazione, sistema di notifiche, pipeline ETL) e guidarne l'implementazione nel team.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-02",
+          "category": "architecture",
+          "title": "Redigere Architecture Decision Records (ADR)",
+          "description": "Scrivere almeno 3 ADR per decisioni architetturali significative, con analisi delle alternative, trade-off e motivazione della scelta adottata.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-03",
+          "category": "architecture",
+          "title": "Padronanza di un dominio trasversale",
+          "description": "Dimostrare padronanza avanzata di almeno un dominio trasversale: sicurezza applicativa, performance tuning, osservabilità (logging/tracing/metrics), IaC, o data modeling.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-04",
+          "category": "mentoring",
+          "title": "Mentoring strutturato di 2+ persone",
+          "description": "Fare mentoring continuativo e strutturato di almeno 2 colleghi B o C: 1:1 regolari, piano di crescita condiviso, feedback documentato a cadenza mensile.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-05",
+          "category": "hiring",
+          "title": "Condurre colloqui tecnici come interviewer",
+          "description": "Condurre in autonomia almeno 5 colloqui tecnici di selezione come interviewer principale, con scheda di valutazione scritta per ogni candidato.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-06",
+          "category": "standards",
+          "title": "Definire e far adottare standard tecnici a livello di team",
+          "description": "Proporre, definire e far adottare effettivamente standard tecnici condivisi nel team (linting, testing strategy, API conventions, sicurezza baseline, ecc.) documentati e rispettati.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-07",
+          "category": "delivery",
+          "title": "Guidare la delivery di una release complessa dal kickoff al go-live",
+          "description": "Assumere la guida tecnica di una release o di un progetto dalla fase di analisi fino al go-live, coordinando il team e gestendo i rischi tecnici.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-08",
+          "category": "delivery",
+          "title": "Pianificazione di epiche e milestone",
+          "description": "Dimostrare capacità di stimare e pianificare epiche o milestone di progetto (non solo singole storie), con breakdown strutturato e gestione delle dipendenze.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-09",
+          "category": "incident_management",
+          "title": "Gestire almeno un incident in produzione",
+          "description": "Guidare la risoluzione di almeno un incident in produzione: coordinamento del team, comunicazione agli stakeholder, soluzione e redazione del post-mortem.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-10",
+          "category": "client",
+          "title": "Presentare soluzioni architetturali al cliente",
+          "description": "Presentare autonomamente soluzioni architetturali o scelte tecniche a stakeholder tecnici lato cliente o a un comitato interno in almeno 3 occasioni.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-11",
+          "category": "client",
+          "title": "Relazioni solide con referenti chiave del cliente",
+          "description": "Costruire relazioni dirette e di fiducia con almeno 2 figure chiave lato cliente (referente tecnico, PM, analista), diventando un interlocutore autonomo.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-12",
+          "category": "business",
+          "title": "Contribuire a una proposta commerciale o SOW",
+          "description": "Partecipare alla redazione di almeno una proposta commerciale, SOW o offerta tecnica, contribuendo alla parte di scoping, stima e descrizione dell'approccio.",
+          "priority": "recommended"
+        },
+        {
+          "id": "D-13",
+          "category": "innovation",
+          "title": "Portare avanti almeno un'iniziativa di innovazione",
+          "description": "Proporre e portare a compimento almeno un PoC, introduzione di nuova tecnologia o metodologia con impatto misurabile sul progetto o sul team.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-14",
+          "category": "ownership",
+          "title": "Ownership tecnica dell'intera area di progetto",
+          "description": "Dimostrare ownership dell'intera area tecnica del proprio progetto: qualità del codice, coerenza architetturale, aggiornamento dipendenze, sicurezza baseline.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-15",
+          "category": "communication",
+          "title": "Comunicare rischi tecnici in anticipo con mitigazioni",
+          "description": "Identificare e comunicare rischi tecnici rilevanti prima che diventino problemi, con proposta di mitigazione scritta, in almeno 3 situazioni documentabili.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-16",
+          "category": "influence",
+          "title": "Influenzare decisioni tecniche senza autorità gerarchica",
+          "description": "Dimostrare capacità di portare il team verso una scelta tecnica migliore attraverso argomentazioni, dati e relazioni, non per posizione gerarchica.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-17",
+          "category": "certifications",
+          "title": "Certificazione professional/expert",
+          "description": "Conseguire almeno una certificazione professional o expert di settore (es. AZ-305, AZ-400, AWS Solutions Architect Professional, CKA, CKAD, PMP, ecc.).",
+          "priority": "recommended"
+        },
+        {
+          "id": "D-18",
+          "category": "knowledge_sharing",
+          "title": "Workshop o sessione formativa strutturata per il team",
+          "description": "Tenere almeno 2 sessioni formative strutturate per colleghi (workshop pratico, hackathon interno, training tecnico) con materiale preparato e feedback raccolto.",
+          "priority": "recommended"
+        },
+        {
+          "id": "D-19",
+          "category": "kpi",
+          "title": "Contributo misurabile su un KPI di progetto",
+          "description": "Avere un contributo direttamente misurabile su almeno un KPI di progetto (riduzione tempi di risposta, aumento copertura test, riduzione incidenti, velocità delivery).",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-20",
+          "category": "community",
+          "title": "Partecipazione alla community interna",
+          "description": "Contribuire alla community tecnica interna (blog aziendale, tech talk pubblica, open source interno, guild/chapter) con almeno 2 contributi nell'anno.",
+          "priority": "recommended"
+        },
+        {
+          "id": "D-21",
+          "category": "english",
+          "title": "Inglese C1 scritto e parlato",
+          "description": "Raggiungere un livello C1 in inglese scritto e parlato, documentato con certificazione o valutazione interna, per operare autonomamente in contesti internazionali.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-22",
+          "category": "reputation",
+          "title": "Essere riconosciuto come punto di riferimento tecnico",
+          "description": "Essere riconosciuto spontaneamente dai colleghi del progetto come il punto di riferimento tecnico principale, verificabile tramite peer feedback strutturato.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "D-23",
+          "category": "collaboration",
+          "title": "Collaborazione efficace con team e vendor esterni",
+          "description": "Dimostrare capacità di lavorare efficacemente con team esterni (altri dipartimenti, vendor, partner tecnici) su almeno un'integrazione o iniziativa congiunta.",
+          "priority": "recommended"
+        }
+      ]
+    },
+    {
+      "code": "F",
+      "label": "Senior Consultant",
+      "description": "Figura di riferimento tecnico e/o funzionale. Gestisce deliverable complessi in piena autonomia, guida tecnicamente il team, cura le relazioni con il cliente e inizia ad avere responsabilità di coordinamento formale.",
+      "next_level": {
+        "code": "H",
+        "label": "Manager"
+      },
+      "objectives_to_reach_next_level": [
+        {
+          "id": "F-01",
+          "category": "people_management",
+          "title": "Gestire direttamente un team di 3-5 persone",
+          "description": "Assumere la responsabilità di gestione diretta di un team di 3-5 persone: 1:1 regolari (almeno bisettimanali), assegnazione degli obiettivi, gestione del benessere e delle priorità.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-02",
+          "category": "people_management",
+          "title": "Definire piani di crescita individuali per il team",
+          "description": "Redigere un piano di crescita individuale (IDP) per ciascun membro del team, con obiettivi SMART, frequenza di revisione e azioni concrete di sviluppo.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-03",
+          "category": "people_management",
+          "title": "Condurre performance review formali",
+          "description": "Condurre almeno 2 cicli completi di performance review formale per il proprio team, con documentazione scritta e conversazioni di sviluppo strutturate.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-04",
+          "category": "people_management",
+          "title": "Mentorare un profilo D verso la promozione a F",
+          "description": "Seguire almeno un collega di livello D in un percorso di mentoring che porti alla promozione a F, con piano di sviluppo documentato e progressi tracciati.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-05",
+          "category": "people_management",
+          "title": "Gestire conflitti interpersonali nel team",
+          "description": "Gestire autonomamente almeno una situazione di conflitto o difficoltà interpersonale nel team, con esito positivo documentato e feedback dei coinvolti.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-06",
+          "category": "hiring",
+          "title": "Guidare il processo di hiring end-to-end per profili senior",
+          "description": "Guidare autonomamente il processo di selezione per almeno 3 profili F o D: job description, screening, colloqui tecnici, valutazione, offerta.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-07",
+          "category": "business",
+          "title": "Contribuire al budget e alla stima dei costi di engagement",
+          "description": "Partecipare alla definizione del budget e alla stima dei costi di almeno un progetto/engagement, con responsabilità su una parte della stima economica.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-08",
+          "category": "business",
+          "title": "Identificare opportunità di upsell o cross-sell nel cliente",
+          "description": "Identificare e proporre internamente almeno 2 opportunità di espansione del business nel cliente corrente, con analisi scritta e proposta di approccio.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-09",
+          "category": "client",
+          "title": "Relazioni autonome con C-level o decision maker del cliente",
+          "description": "Costruire e mantenere relazioni dirette e fiduciarie con almeno un C-level o decision maker lato cliente, senza intermediazione del management senior.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-10",
+          "category": "client",
+          "title": "Gestire escalation con il cliente in autonomia",
+          "description": "Gestire autonomamente almeno 2 situazioni di escalation con il cliente (insoddisfazione, ritardi, problemi di qualità) con esito positivo e documentato.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-11",
+          "category": "delivery",
+          "title": "Guidare la delivery di un programma multi-team o multi-progetto",
+          "description": "Assumere la leadership di delivery su un programma che coinvolga più team o più progetti in parallelo, con coordinamento, roadmap e reporting al management.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-12",
+          "category": "delivery",
+          "title": "Raggiungere target di KPI di progetto per 2 cicli consecutivi",
+          "description": "Raggiungere o superare gli obiettivi di KPI assegnati al proprio portfolio (qualità, velocità, NPS cliente, margine) per almeno 2 cicli di valutazione consecutivi.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-13",
+          "category": "business",
+          "title": "Presentare e difendere un'offerta commerciale",
+          "description": "Partecipare alla redazione e alla presentazione di almeno una proposta commerciale formale (pitch o written proposal) a un cliente, con ruolo attivo nella presentazione.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-14",
+          "category": "strategy",
+          "title": "Contribuire alla strategia tecnica del dipartimento",
+          "description": "Portare contributi concreti (documenti, proposte, sessioni di lavoro) alla definizione della strategia tecnica o della roadmap del dipartimento/practice.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-15",
+          "category": "kpi",
+          "title": "Definire e monitorare KPI del team e del progetto",
+          "description": "Impostare un sistema di KPI per il proprio team e progetto (velocità, qualità, NPS, margine), con dashboard e revisione periodica comunicata al management.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-16",
+          "category": "people_management",
+          "title": "Costruire un team autonomo",
+          "description": "Dimostrare che il proprio team è in grado di operare in autonomia e mantenere la qualità della delivery anche in assenza del manager per almeno 2 settimane.",
+          "priority": "recommended"
+        },
+        {
+          "id": "F-17",
+          "category": "communication",
+          "title": "Reporting chiaro al senior management",
+          "description": "Comunicare stato, rischi e criticità del progetto al senior management in modo strutturato, tempestivo e orientato alle decisioni, per almeno 6 mesi consecutivi.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-18",
+          "category": "knowledge_sharing",
+          "title": "Presentare come speaker a un evento di settore",
+          "description": "Parlare come speaker o panelist a un evento esterno di settore (conferenza, meetup, webinar pubblico) almeno una volta in 12 mesi.",
+          "priority": "recommended"
+        },
+        {
+          "id": "F-19",
+          "category": "culture",
+          "title": "Contribuire alla cultura aziendale",
+          "description": "Portare contributi concreti alla cultura e ai valori aziendali: iniziative di employer branding, programmi di onboarding, community interne, valori del team.",
+          "priority": "recommended"
+        },
+        {
+          "id": "F-20",
+          "category": "client",
+          "title": "Ottenere feedback positivo da almeno 2 clienti diversi",
+          "description": "Ricevere feedback scritto positivo (NPS ≥ 8 o equivalente) da almeno 2 clienti diversi sulla qualità della relazione e della delivery gestita.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-21",
+          "category": "people_management",
+          "title": "Gestire onboarding e offboarding di risorse",
+          "description": "Gestire autonomamente almeno 2 cicli completi di onboarding e 1 offboarding di risorse sull'engagement, con checklist e documentazione.",
+          "priority": "recommended"
+        },
+        {
+          "id": "F-22",
+          "category": "networking",
+          "title": "Costruire rete interna trasversale",
+          "description": "Sviluppare relazioni di collaborazione con almeno 3 figure chiave in altri dipartimenti (HR, altre practice, delivery leadership), attivabili per iniziative o hiring.",
+          "priority": "recommended"
+        },
+        {
+          "id": "F-23",
+          "category": "delivery",
+          "title": "Leadership situazionale adattata al contesto",
+          "description": "Dimostrare capacità di adattare lo stile di management al contesto e al team (direttivo, coaching, delegante) con feedback positivo dei diretti riporti.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "F-24",
+          "category": "business",
+          "title": "Revenue o margin target raggiunti per 2 cicli",
+          "description": "Raggiungere l'obiettivo di revenue o margin assegnato al proprio portfolio o engagement per almeno 2 cicli di valutazione consecutivi.",
+          "priority": "mandatory"
+        }
+      ]
+    },
+    {
+      "code": "H",
+      "label": "Manager",
+      "description": "Figura con responsabilità di P&L, sviluppo del business e gestione di un team strutturato. Guida programmi complessi, coltiva relazioni strategiche col cliente e contribuisce alla strategia aziendale.",
+      "next_level": {
+        "code": "I",
+        "label": "Associate Partner"
+      },
+      "objectives_to_reach_next_level": [
+        {
+          "id": "H-01",
+          "category": "business",
+          "title": "Responsabilità di un P&L significativo",
+          "description": "Assumere e gestire la responsabilità di un P&L (practice, vertical o portfolio clienti) con target di revenue e margin definiti, monitorati e raggiunti per almeno 2 anni consecutivi.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-02",
+          "category": "business",
+          "title": "Chiudere opportunità commerciali con nuovi clienti",
+          "description": "Portare autonomamente almeno 2 nuovi clienti (new logo) a firma del contratto, gestendo l'intero ciclo di vendita consultiva.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-03",
+          "category": "business",
+          "title": "Costruire una pipeline di opportunità qualificate",
+          "description": "Mantenere una pipeline di opportunità commerciali qualificate con valore totale almeno 3x il proprio target annuale, aggiornata e gestita attivamente.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-04",
+          "category": "business",
+          "title": "Contribuire al go-to-market dell'azienda",
+          "description": "Contribuire attivamente alla definizione dell'offerta di servizi dell'azienda (service catalog, practice offering, positioning) con proposte approvate e implementate.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-05",
+          "category": "business",
+          "title": "Costruire partnership con vendor o partner strategici",
+          "description": "Sviluppare e formalizzare almeno una partnership strategica con un vendor o partner tecnologico rilevante, con accordo firmato e pipeline di opportunità condivisa.",
+          "priority": "recommended"
+        },
+        {
+          "id": "H-06",
+          "category": "client",
+          "title": "Relazioni con C-level di clienti strategici",
+          "description": "Costruire e mantenere relazioni strategiche con C-level (CIO, CTO, CDO) di almeno 2 clienti chiave, con incontri regolari e agenda condivisa.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-07",
+          "category": "client",
+          "title": "Guidare trasformazioni digitali significative nel cliente",
+          "description": "Guidare almeno una trasformazione digitale significativa presso un cliente (cloud journey, modernizzazione applicativa, adozione AI) con impatto misurabile e documentato.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-08",
+          "category": "client",
+          "title": "NPS cliente medio ≥ 8 sul portfolio",
+          "description": "Mantenere un NPS medio di almeno 8/10 (o equivalente) sul proprio portfolio di clienti gestiti per almeno 2 anni consecutivi.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-09",
+          "category": "client",
+          "title": "Portare almeno 2 referenze cliente pubbliche",
+          "description": "Ottenere almeno 2 referenze cliente pubbliche (case study scritti, testimonianze video, co-presentazioni a eventi) nell'arco di 18 mesi.",
+          "priority": "recommended"
+        },
+        {
+          "id": "H-10",
+          "category": "people_management",
+          "title": "Sviluppare 2-3 Manager nel percorso di crescita",
+          "description": "Seguire attivamente lo sviluppo di almeno 2-3 profili F verso la promozione a H, con piani di crescita documentati e almeno una promozione effettiva completata.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-11",
+          "category": "people_management",
+          "title": "Definire talent strategy e succession planning",
+          "description": "Redigere una talent strategy per il proprio team/practice (hiring plan, retention, succession) con piano di successione per le posizioni chiave, approvato dall'azienda.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-12",
+          "category": "people_management",
+          "title": "Retention del personale sotto target",
+          "description": "Mantenere il turnover del proprio team al di sotto del target aziendale (es. <15%) per almeno 2 anni consecutivi, con azioni di retention documentate.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-13",
+          "category": "people_management",
+          "title": "Attrarre talenti senior per la propria leadership",
+          "description": "Dimostrare capacità di attrarre almeno 2 profili senior (F o H) motivati anche dalla propria reputazione e stile di leadership, con feedback espliciti in fase di hiring.",
+          "priority": "recommended"
+        },
+        {
+          "id": "H-14",
+          "category": "strategy",
+          "title": "Contribuire alle decisioni strategiche aziendali",
+          "description": "Partecipare attivamente alle decisioni strategiche dell'azienda (OKR annuali, go-to-market, apertura di nuove practice, possibili acquisizioni) con contributi documentati e approvati.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-15",
+          "category": "strategy",
+          "title": "Definire la roadmap di service offering del proprio dominio",
+          "description": "Definire e presentare al board una roadmap di offerta per il proprio dominio (tecnologico o di practice) per i successivi 12-18 mesi, con approvazione e implementazione parziale.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-16",
+          "category": "strategy",
+          "title": "Costruire o far crescere una practice da 0 o significativamente",
+          "description": "Avere responsabilità diretta nella costruzione o crescita significativa di una practice (tecnologia, vertical, servizio), con metriche di crescita documentabili.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-17",
+          "category": "thought_leadership",
+          "title": "Essere riconosciuto come thought leader nel proprio dominio",
+          "description": "Produrre almeno 3 contenuti di thought leadership (articoli, whitepaper, keynote, advisory board) riconosciuti nel settore nell'arco di 18 mesi.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-18",
+          "category": "thought_leadership",
+          "title": "Rappresentare l'azienda in contesti di alto profilo",
+          "description": "Rappresentare l'azienda in almeno 2 contesti di alto profilo: board di clienti enterprise, panel di conferenze major, advisory board di settore.",
+          "priority": "recommended"
+        },
+        {
+          "id": "H-19",
+          "category": "business",
+          "title": "Negoziare contratti e SLA complessi",
+          "description": "Gestire autonomamente la negoziazione di almeno 2 contratti o SLA complessi con clienti enterprise, con firma e condizioni favorevoli documentate.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-20",
+          "category": "innovation",
+          "title": "Guidare un programma di innovazione con impatto misurabile",
+          "description": "Guidare almeno un programma di innovazione (AI adoption, cloud-native transformation, process automation) con impatto misurabile sul business del cliente o dell'azienda.",
+          "priority": "recommended"
+        },
+        {
+          "id": "H-21",
+          "category": "culture",
+          "title": "Iniziative di impatto culturale organizzativo",
+          "description": "Proporre e guidare almeno un'iniziativa con impatto sulla cultura aziendale (diversity & inclusion, learning culture, employer branding) adottata dall'organizzazione.",
+          "priority": "recommended"
+        },
+        {
+          "id": "H-22",
+          "category": "networking",
+          "title": "Rete di relazioni esterne strategiche",
+          "description": "Costruire e mantenere una rete di relazioni esterne qualificate (CIO/CTO di clienti chiave, analisti di settore, community leader, accademia) attivabile per business e recruiting.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-23",
+          "category": "people_management",
+          "title": "Piano di successione definito per le posizioni chiave",
+          "description": "Avere un piano di successione formalmente definito e condiviso con il management per tutte le posizioni chiave del proprio team/practice.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-24",
+          "category": "delivery",
+          "title": "Gestione di crisi a livello organizzativo",
+          "description": "Gestire almeno una crisi a livello organizzativo (perdita di cliente chiave, crisi reputazionale, turnover critico) con piano di recovery e comunicazione al board.",
+          "priority": "mandatory"
+        },
+        {
+          "id": "H-25",
+          "category": "business",
+          "title": "Contribuire al brand aziendale come technology advisor",
+          "description": "Contribuire in modo documentato alla costruzione del brand aziendale come advisor tecnologico di riferimento nel mercato: media, analisti, report di settore.",
+          "priority": "recommended"
+        }
+      ]
+    },
+    {
+      "code": "I",
+      "label": "Associate Partner",
+      "description": "Livello apicale operativo. Figura di riferimento per clienti strategici, sviluppo del business, ownership di P&L significativi e leadership organizzativa. Non prevede un livello successivo nella presente scala.",
+      "next_level": null,
+      "objectives_to_reach_next_level": []
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "id": "05_francesco_greco",
+  "personal": {
+    "name": "Francesco Greco",
+    "email": "fgreco@example.com",
+    "location": "Padova"
+  },
+  "current_role": {
+    "title": "Platform Engineer (DevOps)",
+    "company": "Nexa Cloud Services",
+    "since": "2023-01",
+    "hr_level": {
+      "code": "F",
+      "label": "Senior Consultant"
+    }
+  },
+  "total_years_experience": 5,
+  "education": [
+    {
+      "degree": "Diploma ITIS Informatica",
+      "institution": null,
+      "year": 2015
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Certified Kubernetes Administrator",
+      "code": "CKA"
+    },
+    {
+      "name": "Microsoft Certified: Azure Administrator Associate",
+      "code": "AZ-104"
+    },
+    {
+      "name": "HashiCorp Certified: Terraform Associate",
+      "code": null
+    }
+  ],
+  "technical_skills": {
+    "languages": [
+      { "name": "Bash", "level": "advanced" },
+      { "name": "Python (scripting)", "level": "intermediate" }
+    ],
+    "frameworks_libraries": [],
+    "tools": [
+      { "name": "Kubernetes", "level": "advanced" },
+      { "name": "Docker", "level": "advanced" },
+      { "name": "Terraform", "level": "advanced" },
+      { "name": "ArgoCD", "level": "advanced" },
+      { "name": "GitHub Actions", "level": "advanced" },
+      { "name": "Jenkins", "level": "intermediate" },
+      { "name": "Prometheus", "level": "advanced" },
+      { "name": "Grafana", "level": "advanced" },
+      { "name": "Loki", "level": "intermediate" }
+    ],
+    "cloud": [
+      { "name": "Azure (AKS, ACR, Key Vault)", "level": "advanced" },
+      { "name": "Linux", "level": "advanced" }
+    ],
+    "databases": [],
+    "methodologies": [
+      { "name": "GitOps", "level": "advanced" },
+      { "name": "SRE / SLO / SLI", "level": "intermediate-advanced" },
+      { "name": "CI/CD", "level": "advanced" },
+      { "name": "Observability", "level": "advanced" },
+      { "name": "Networking", "level": "intermediate" }
+    ]
+  },
+  "soft_skills": [
+    "automazione sistemi",
+    "problem solving operativo",
+    "on-call e incident response",
+    "coordinamento informale"
+  ],
+  "languages": [
+    { "language": "Italiano", "level": "native" },
+    { "language": "Inglese", "level": "B2" }
+  ],
+  "leadership_experience": {
+    "has_led_people": false,
+    "details": "Coordinamento informale senza ruolo formale di management. Supporto a 15+ team engineering tramite la piattaforma gestita."
+  },
+  "key_achievements": [
+    "Gestione piattaforma Kubernetes multi-tenant interna a supporto di 15+ team",
+    "CI/CD end-to-end per 15+ team con stack GitOps (ArgoCD)",
+    "IaC end-to-end (Terraform) per tutti gli ambienti cloud",
+    "Migrazione pipeline da Jenkins a GitHub Actions",
+    "Containerizzazione di applicazioni legacy",
+    "Setup observability stack (Prometheus, Grafana, Loki)"
+  ],
+  "self_assessed_gaps": [
+    "Sviluppo applicativo limitato (solo scripting/tooling, non prodotto)",
+    "Nessuna esperienza di gestione formale di persone",
+    "Background accademico limitato (diploma)"
+  ],
+  "career_path": {
+    "current_level": {
+      "code": "F",
+      "label": "Senior Consultant"
+    },
+    "suggested_next_level": {
+      "code": "H",
+      "label": "Manager"
+    },
+    "estimated_timeframe_months": 15,
+    "growth_areas": [
+      {
+        "area": "Platform product mindset",
+        "priority": "high",
+        "actions": [
+          "Trattare la piattaforma interna come un prodotto: raccogliere feedback dagli utenti (i team engineering), definire roadmap",
+          "Misurare e comunicare KPI della piattaforma (disponibilità, DORA metrics)",
+          "Introdurre developer portal o self-service capabilities (es. Backstage)"
+        ]
+      },
+      {
+        "area": "Engineering leadership",
+        "priority": "high",
+        "actions": [
+          "Strutturare la governance della piattaforma e le sue linee guida per i team",
+          "Mentorare altri engineer su Kubernetes, GitOps e IaC",
+          "Candidarsi per ruolo di Platform/Infrastructure Lead"
+        ]
+      },
+      {
+        "area": "Architettura infrastrutturale avanzata",
+        "priority": "medium",
+        "actions": [
+          "Approfondire service mesh (Istio/Linkerd)",
+          "Studiare FinOps e ottimizzazione costi cloud",
+          "Conseguire AZ-305 o certificazione architect-level"
+        ]
+      },
+      {
+        "area": "Soft skills e comunicazione business",
+        "priority": "medium",
+        "actions": [
+          "Sviluppare capacità di comunicare l'impatto della piattaforma al management",
+          "Partecipare a decisioni strategiche sull'infrastruttura aziendale"
+        ]
+      }
+    ]
+  }
+}

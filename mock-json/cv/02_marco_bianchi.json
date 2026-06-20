@@ -1,0 +1,130 @@
+{
+  "id": "02_marco_bianchi",
+  "personal": {
+    "name": "Marco Bianchi",
+    "email": "marco.bianchi@example.com",
+    "location": "Milano"
+  },
+  "current_role": {
+    "title": "Fullstack Developer",
+    "company": "Webcore Solutions",
+    "since": "2023-01",
+    "hr_level": {
+      "code": "D",
+      "label": "Intermediate / Consultant"
+    }
+  },
+  "total_years_experience": 4,
+  "education": [
+    {
+      "degree": "Diploma di Perito Informatico",
+      "institution": null,
+      "year": 2018
+    },
+    {
+      "degree": "Bootcamp Fullstack",
+      "institution": null,
+      "year": 2021,
+      "duration_months": 6
+    }
+  ],
+  "certifications": [],
+  "technical_skills": {
+    "languages": [
+      { "name": "JavaScript", "level": "advanced" },
+      { "name": "TypeScript", "level": "intermediate" }
+    ],
+    "frameworks_libraries": [
+      { "name": "React", "level": "intermediate-advanced" },
+      { "name": "React Query", "level": "intermediate" },
+      { "name": "Node.js", "level": "intermediate" },
+      { "name": "Express", "level": "intermediate" }
+    ],
+    "tools": [
+      { "name": "Git", "level": "intermediate" },
+      { "name": "GitHub Actions", "level": "beginner" },
+      { "name": "Docker", "level": "beginner" }
+    ],
+    "cloud": [],
+    "databases": [
+      { "name": "PostgreSQL", "level": "intermediate" }
+    ],
+    "methodologies": [
+      { "name": "Agile / Scrum", "level": "practitioner" },
+      { "name": "REST API design", "level": "intermediate" }
+    ]
+  },
+  "soft_skills": [
+    "problem solving",
+    "curiosità tecnica",
+    "coordinamento informale",
+    "code review"
+  ],
+  "languages": [
+    { "language": "Italiano", "level": "native" },
+    { "language": "Inglese", "level": "B1/B2" }
+  ],
+  "leadership_experience": {
+    "has_led_people": true,
+    "details": "Coordinamento informale di 2 sviluppatori junior: smistamento task, code review delle PR. Prima esperienza di coordinamento, percepita come stimolante ma con lacune su pianificazione e comunicazione con il PO."
+  },
+  "key_achievements": [
+    "Feature end-to-end su piattaforma di ticketing aziendale (API REST + UI React)",
+    "Introduzione autonoma di React Query con riduzione del codice di sincronizzazione",
+    "Ottimizzazione indici PostgreSQL per miglioramento performance",
+    "Configurazione pipeline CI su GitHub Actions",
+    "Primo ruolo di riferimento tecnico per 2 junior"
+  ],
+  "self_assessed_gaps": [
+    "DevOps e infrastruttura non approfonditi",
+    "Pianificazione e comunicazione con Product Owner da migliorare",
+    "Inglese parlato da migliorare",
+    "Nessuna certificazione formale"
+  ],
+  "career_path": {
+    "current_level": {
+      "code": "D",
+      "label": "Intermediate / Consultant"
+    },
+    "suggested_next_level": {
+      "code": "F",
+      "label": "Senior Consultant"
+    },
+    "estimated_timeframe_months": 18,
+    "growth_areas": [
+      {
+        "area": "Technical leadership",
+        "priority": "high",
+        "actions": [
+          "Strutturare il coordinamento dei junior con 1:1 regolari e obiettivi chiari",
+          "Condurre sessioni di code review formali con feedback costruttivo",
+          "Partecipare attivamente ai refinement con il Product Owner"
+        ]
+      },
+      {
+        "area": "Architettura e design",
+        "priority": "high",
+        "actions": [
+          "Studiare pattern architetturali (CQRS, event-driven basics)",
+          "Partecipare o proporre decisioni di design con ADR"
+        ]
+      },
+      {
+        "area": "Cloud e DevOps",
+        "priority": "medium",
+        "actions": [
+          "Approfondire Docker e container orchestration base",
+          "Ottenere una certificazione cloud entry-level (es. AZ-900)"
+        ]
+      },
+      {
+        "area": "Comunicazione verso stakeholder",
+        "priority": "medium",
+        "actions": [
+          "Prendere ownership della comunicazione tecnica con il PO",
+          "Migliorare inglese parlato con pratica regolare"
+        ]
+      }
+    ]
+  }
+}
