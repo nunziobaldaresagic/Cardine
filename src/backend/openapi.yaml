@@ -1,0 +1,536 @@
+openapi: 3.0.3
+info:
+  title: Cardine Backend API — PoC
+  description: |
+    REST API per la PoC di Cardine — piattaforma B2B di career counseling.
+    Tutti gli endpoint sono aperti (nessuna auth reale nella PoC).
+    I dati sono in-memory caricati dai file mock-json/.
+    La roadmap viene generata via SSE (Server-Sent Events).
+  version: 0.1.0
+  contact:
+    name: Team Cardine
+
+servers:
+  - url: http://localhost:3001
+    description: Sviluppo locale
+
+tags:
+  - name: Auth
+    description: Autenticazione (stub per PoC)
+  - name: Employees
+    description: Profili dipendenti
+  - name: CareerMap
+    description: Mappa di career progression aziendale
+  - name: Proximity
+    description: Calcolo proximity score
+  - name: Gap
+    description: Gap analysis dettagliata
+  - name: Roadmap
+    description: Generazione, conferma e lettura della roadmap
+
+paths:
+  /api/auth/login:
+    post:
+      tags: [Auth]
+      summary: Login stub
+      description: Restituisce sempre 200 OK con un token demo. Non valida credenziali.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: demo@cardine.io
+                password:
+                  type: string
+                  example: qualsiasi
+      responses:
+        '200':
+          description: Login riuscito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+
+  /api/employees:
+    get:
+      tags: [Employees]
+      summary: Lista dipendenti
+      description: Restituisce la lista di tutti i dipendenti con dati essenziali.
+      responses:
+        '200':
+          description: Lista dipendenti
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EmployeeSummary'
+
+  /api/employees/{id}:
+    get:
+      tags: [Employees]
+      summary: Profilo completo dipendente
+      description: Restituisce il profilo completo del dipendente, incluse competenze e career path.
+      parameters:
+        - $ref: '#/components/parameters/employeeId'
+      responses:
+        '200':
+          description: Profilo completo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/career-map:
+    get:
+      tags: [CareerMap]
+      summary: Career map completa
+      description: Restituisce la career map con tutti i livelli e gli obiettivi per raggiungere il livello successivo.
+      responses:
+        '200':
+          description: Career map
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CareerMap'
+
+  /api/employees/{id}/proximity:
+    get:
+      tags: [Proximity]
+      summary: Proximity scores verso i livelli raggiungibili
+      description: |
+        Calcola il proximity score del dipendente verso i livelli +1 e +2
+        rispetto al livello attuale. Risultati ordinati per score decrescente.
+      parameters:
+        - $ref: '#/components/parameters/employeeId'
+      responses:
+        '200':
+          description: Array di proximity results ordinati per score desc
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProximityResult'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/employees/{id}/gap/{targetLevel}:
+    get:
+      tags: [Gap]
+      summary: Gap analysis dettagliata
+      description: |
+        Restituisce la gap analysis completa del dipendente verso un livello target specifico.
+        Include tutti gli obiettivi con indicazione se sono già coperti o meno.
+      parameters:
+        - $ref: '#/components/parameters/employeeId'
+        - name: targetLevel
+          in: path
+          required: true
+          description: Codice del livello target (es. C, D, F, H, I)
+          schema:
+            type: string
+            example: C
+      responses:
+        '200':
+          description: Gap analysis completa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GapAnalysis'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/employees/{id}/roadmap/generate:
+    post:
+      tags: [Roadmap]
+      summary: Genera roadmap via SSE streaming
+      description: |
+        Avvia la generazione della roadmap (stub — nessuna chiamata LLM reale nella PoC).
+        La risposta è uno stream SSE (`text/event-stream`).
+
+        **Formato eventi SSE:**
+        - `data: {"type":"meta","roadmap":{...}}` — primo evento, contiene la roadmap completa strutturata
+        - `data: {"type":"text","content":"..."}` — righe di testo in streaming (Markdown)
+        - `data: [DONE]` — evento finale, chiude lo stream
+      parameters:
+        - $ref: '#/components/parameters/employeeId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                targetLevel:
+                  type: string
+                  description: Codice livello target. Se omesso usa il suggested_next_level del dipendente.
+                  example: C
+      responses:
+        '200':
+          description: SSE stream con la roadmap
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: Stream di eventi SSE
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/employees/{id}/roadmap/confirm:
+    post:
+      tags: [Roadmap]
+      summary: Conferma una roadmap
+      description: Salva la roadmap come confermata (in-memory). Sovrascrive l'eventuale roadmap precedente.
+      parameters:
+        - $ref: '#/components/parameters/employeeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Roadmap'
+      responses:
+        '201':
+          description: Roadmap confermata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    example: true
+                  roadmap:
+                    $ref: '#/components/schemas/Roadmap'
+        '400':
+          description: Body roadmap non valido
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/employees/{id}/roadmap:
+    get:
+      tags: [Roadmap]
+      summary: Leggi roadmap del dipendente
+      description: |
+        Restituisce la roadmap confermata se presente, altrimenti una roadmap stub non confermata.
+        Il campo `confirmed` indica se la roadmap è stata confermata dal dipendente.
+      parameters:
+        - $ref: '#/components/parameters/employeeId'
+      responses:
+        '200':
+          description: Roadmap (confermata o stub)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  confirmed:
+                    type: boolean
+                  roadmap:
+                    $ref: '#/components/schemas/Roadmap'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  parameters:
+    employeeId:
+      name: id
+      in: path
+      required: true
+      description: ID del dipendente (es. 01_giulia_ferraro)
+      schema:
+        type: string
+        example: 01_giulia_ferraro
+
+  responses:
+    NotFound:
+      description: Risorsa non trovata
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Employee not found
+
+    LoginResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: true
+        token:
+          type: string
+          example: dev-token
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+            role:
+              type: string
+              example: employee
+            name:
+              type: string
+
+    HrLevel:
+      type: object
+      properties:
+        code:
+          type: string
+          example: B
+        label:
+          type: string
+          example: Junior / Analyst
+
+    EmployeeSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 01_giulia_ferraro
+        name:
+          type: string
+          example: Giulia Ferraro
+        email:
+          type: string
+        location:
+          type: string
+        currentRole:
+          type: string
+          example: Junior Frontend Developer
+        company:
+          type: string
+        hrLevel:
+          $ref: '#/components/schemas/HrLevel'
+        totalYearsExperience:
+          type: number
+
+    Employee:
+      type: object
+      description: Profilo completo dipendente dal CV mock
+      properties:
+        id:
+          type: string
+        personal:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            location:
+              type: string
+        current_role:
+          type: object
+          properties:
+            title:
+              type: string
+            company:
+              type: string
+            since:
+              type: string
+            hr_level:
+              $ref: '#/components/schemas/HrLevel'
+        total_years_experience:
+          type: number
+        certifications:
+          type: array
+          items:
+            type: object
+        technical_skills:
+          type: object
+        soft_skills:
+          type: array
+          items:
+            type: string
+        career_path:
+          type: object
+          properties:
+            current_level:
+              $ref: '#/components/schemas/HrLevel'
+            suggested_next_level:
+              $ref: '#/components/schemas/HrLevel'
+            estimated_timeframe_months:
+              type: integer
+            growth_areas:
+              type: array
+              items:
+                type: object
+                properties:
+                  area:
+                    type: string
+                  priority:
+                    type: string
+                  actions:
+                    type: array
+                    items:
+                      type: string
+
+    Objective:
+      type: object
+      properties:
+        id:
+          type: string
+        category:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        priority:
+          type: string
+          enum: [mandatory, recommended]
+
+    Level:
+      type: object
+      properties:
+        code:
+          type: string
+        label:
+          type: string
+        description:
+          type: string
+        next_level:
+          $ref: '#/components/schemas/HrLevel'
+        objectives_to_reach_next_level:
+          type: array
+          items:
+            $ref: '#/components/schemas/Objective'
+
+    CareerMap:
+      type: object
+      properties:
+        version:
+          type: string
+        description:
+          type: string
+        levels_order:
+          type: array
+          items:
+            type: string
+          example: [B, C, D, F, H, I]
+        levels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Level'
+
+    GapObjective:
+      allOf:
+        - $ref: '#/components/schemas/Objective'
+        - type: object
+          properties:
+            covered:
+              type: boolean
+
+    ProximityResult:
+      type: object
+      properties:
+        targetLevel:
+          type: string
+          example: C
+        targetLabel:
+          type: string
+          example: Junior Avanzato / Exp. Analyst
+        score:
+          type: integer
+          example: 72
+        coveredCount:
+          type: integer
+        totalMandatory:
+          type: integer
+        gaps:
+          type: array
+          items:
+            $ref: '#/components/schemas/GapObjective'
+
+    GapAnalysis:
+      type: object
+      properties:
+        employee:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            currentLevel:
+              $ref: '#/components/schemas/HrLevel'
+        targetLevel:
+          type: string
+        targetLabel:
+          type: string
+        score:
+          type: integer
+        coveredCount:
+          type: integer
+        totalMandatory:
+          type: integer
+        objectives:
+          type: array
+          items:
+            $ref: '#/components/schemas/GapObjective'
+
+    RoadmapAction:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [corso, certificazione, milestone]
+        description:
+          type: string
+        estimatedHours:
+          type: integer
+
+    RoadmapItem:
+      type: object
+      properties:
+        step:
+          type: integer
+        competenza:
+          type: string
+        title:
+          type: string
+        monthRange:
+          type: string
+          example: Mese 1–2
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoadmapAction'
+        status:
+          type: string
+          enum: [not_started, in_progress, completed]
+
+    Roadmap:
+      type: object
+      properties:
+        employeeId:
+          type: string
+        targetLevel:
+          type: string
+        targetLabel:
+          type: string
+        initialScore:
+          type: integer
+        estimatedMonths:
+          type: integer
+        confirmedAt:
+          type: string
+          format: date-time
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoadmapItem'
