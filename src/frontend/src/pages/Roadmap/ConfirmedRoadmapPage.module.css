@@ -1,0 +1,453 @@
+/* ─────────────────────────────────────────────────────────────────────
+ * ConfirmedRoadmapPage — CSS Modules
+ * Stitch-faithful: mobile first → desktop (≥1024px)
+ * Tutti i colori dai token CSS, nessun hex hardcoded.
+ * ──────────────────────────────────────────────────────────────────── */
+
+/* ─── Stato vuoto / loading / errore ───────────────────────────────── */
+.stateWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  min-height: 60vh;
+  padding: var(--space-lg) var(--space-gutter);
+  text-align: center;
+}
+
+.stateText {
+  font-size: var(--text-body-md-size);
+  line-height: var(--text-body-md-line-height);
+  color: var(--color-on-surface-variant);
+  max-width: 36ch;
+}
+
+.spinnerIcon {
+  font-size: 3rem;
+  color: var(--color-primary);
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.errorIcon {
+  font-size: 3rem;
+  color: var(--color-error);
+}
+
+.emptyIcon {
+  font-size: 3.5rem;
+  color: var(--color-outline);
+}
+
+.emptyTitle {
+  font-size: var(--text-headline-md-size);
+  font-weight: var(--text-headline-md-weight);
+  line-height: var(--text-headline-md-line-height);
+  color: var(--color-on-surface);
+}
+
+/* ─── Bottone primario ──────────────────────────────────────────────── */
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-base);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  border: none;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  font-family: var(--font-family);
+  font-size: var(--text-body-md-size);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  margin-top: var(--space-base);
+}
+
+.primaryBtn:hover {
+  background-color: var(--color-primary-container);
+}
+
+/* ─── Roadmap view container ────────────────────────────────────────── */
+.roadmapView {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* ─── Hero ──────────────────────────────────────────────────────────── */
+.hero {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  padding: var(--space-lg) var(--space-gutter) var(--space-md);
+}
+
+.heroInner {
+  max-width: var(--space-container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-base);
+}
+
+.heroTitle {
+  font-size: var(--text-headline-lg-mobile-size);
+  font-weight: var(--text-headline-lg-mobile-weight);
+  line-height: var(--text-headline-lg-mobile-line-height);
+  color: var(--color-on-primary);
+}
+
+.heroTarget {
+  color: var(--color-on-primary-container);
+}
+
+.heroSubtitle {
+  font-size: var(--text-body-md-size);
+  line-height: var(--text-body-md-line-height);
+  color: var(--color-primary-fixed);
+  max-width: 60ch;
+}
+
+/* ─── Stats grid ────────────────────────────────────────────────────── */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-base);
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-base);
+  background-color: var(--color-primary-container);
+  border-radius: var(--radius-xl);
+  padding: var(--space-sm) var(--space-base);
+}
+
+.statIcon {
+  font-size: 1.5rem;
+  color: var(--color-on-primary-container);
+  flex-shrink: 0;
+}
+
+.statBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.statValue {
+  font-size: var(--text-label-md-size);
+  font-weight: 700;
+  line-height: var(--text-label-md-line-height);
+  color: var(--color-on-primary-container);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.statLabel {
+  font-size: var(--text-caption-size);
+  font-weight: var(--text-caption-weight);
+  line-height: var(--text-caption-line-height);
+  color: var(--color-primary-fixed);
+}
+
+/* ─── Progress bar ──────────────────────────────────────────────────── */
+.progressBar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-base);
+}
+
+.progressTrack {
+  height: 8px;
+  background-color: var(--color-primary-container);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--color-on-primary-container);
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+.progressLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-base);
+}
+
+.progressPct {
+  font-size: var(--text-label-md-size);
+  font-weight: 700;
+  color: var(--color-on-primary-container);
+}
+
+.progressCount {
+  font-size: var(--text-caption-size);
+  color: var(--color-primary-fixed);
+}
+
+/* ─── Step section ──────────────────────────────────────────────────── */
+.stepSection {
+  flex: 1;
+  padding: var(--space-md) var(--space-gutter) var(--space-lg);
+  background-color: var(--color-background);
+}
+
+.stepList {
+  list-style: none;
+  max-width: var(--space-container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* ─── Step card ─────────────────────────────────────────────────────── */
+.stepCard {
+  background-color: var(--color-surface-container-lowest);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-outline-variant);
+  overflow: hidden;
+  transition: box-shadow 0.15s ease;
+}
+
+.stepCard:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Status-driven left border accent */
+.status_completed {
+  border-left: 4px solid var(--color-tertiary);
+}
+
+.status_in_progress {
+  border-left: 4px solid var(--color-secondary-container);
+}
+
+.status_not_started {
+  border-left: 4px solid var(--color-outline-variant);
+}
+
+/* Step meta row (number badge + month range) */
+.stepMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-base);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-surface-container-low);
+  border-bottom: 1px solid var(--color-outline-variant);
+}
+
+.stepBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: var(--text-label-md-size);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.stepRange {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-caption-size);
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+  letter-spacing: 0.03em;
+}
+
+/* Step card main body */
+.stepContent {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.stepHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-base);
+  flex-wrap: wrap;
+}
+
+.stepCompetenza {
+  font-size: var(--text-caption-size);
+  font-weight: 600;
+  letter-spacing: var(--text-label-md-letter-spacing);
+  color: var(--color-primary);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.stepTitle {
+  font-size: var(--text-headline-md-size);
+  font-weight: var(--text-headline-md-weight);
+  line-height: var(--text-headline-md-line-height);
+  color: var(--color-on-surface);
+}
+
+/* ─── Status badge ──────────────────────────────────────────────────── */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px var(--space-base);
+  border-radius: var(--radius-full);
+  font-size: var(--text-caption-size);
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.statusBadge_completed {
+  background-color: rgba(0, 86, 35, 0.1);
+  color: var(--color-tertiary);
+}
+
+.statusBadge_in_progress {
+  background-color: rgba(255, 178, 29, 0.15);
+  color: var(--color-secondary);
+}
+
+.statusBadge_not_started {
+  background-color: var(--color-surface-container);
+  color: var(--color-outline);
+}
+
+/* ─── Action list ───────────────────────────────────────────────────── */
+.actionList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-base);
+  padding-top: var(--space-base);
+  border-top: 1px solid var(--color-outline-variant);
+}
+
+.actionItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.actionIcon {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.actionBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.actionType {
+  font-size: var(--text-caption-size);
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.actionDesc {
+  font-size: var(--text-body-md-size);
+  line-height: var(--text-body-md-line-height);
+  color: var(--color-on-surface);
+}
+
+.actionHours {
+  font-size: var(--text-caption-size);
+  color: var(--color-on-surface-variant);
+}
+
+/* ─── Desktop (≥1024px) ─────────────────────────────────────────────── */
+@media (min-width: 1024px) {
+  .hero {
+    padding: var(--space-xl) var(--space-gutter) var(--space-lg);
+  }
+
+  .heroTitle {
+    font-size: var(--text-headline-lg-size);
+    font-weight: var(--text-headline-lg-weight);
+    line-height: var(--text-headline-lg-line-height);
+  }
+
+  .heroSubtitle {
+    font-size: var(--text-body-lg-size);
+    line-height: var(--text-body-lg-line-height);
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(3, minmax(0, 240px));
+    gap: var(--space-md);
+  }
+
+  .statCard {
+    padding: var(--space-base) var(--space-md);
+  }
+
+  .statIcon {
+    font-size: 2rem;
+  }
+
+  .statValue {
+    font-size: var(--text-body-lg-size);
+    font-weight: 700;
+  }
+
+  .statLabel {
+    font-size: var(--text-label-md-size);
+  }
+
+  .stepSection {
+    padding: var(--space-lg) var(--space-gutter);
+  }
+
+  .stepList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .stepCard {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stepContent {
+    flex: 1;
+  }
+
+  .stepTitle {
+    font-size: var(--text-headline-md-size);
+  }
+}
