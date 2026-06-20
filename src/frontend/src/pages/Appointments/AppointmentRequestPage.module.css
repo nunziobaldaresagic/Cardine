@@ -1,0 +1,232 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * AppointmentRequestPage — CSS Modules
+ * Solo token CSS da tokens.css — nessun hex hardcoded.
+ * ────────────────────────────────────────────────────────────────────────── */
+
+/* ─── Pagina ──────────────────────────────────────────────────────────── */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ─── Header ──────────────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  color: var(--color-on-surface-variant);
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+  margin-top: 4px;
+}
+
+.backBtn:hover {
+  background-color: var(--color-surface-container);
+}
+
+.pageTitle {
+  font-size: var(--text-headline-lg-mobile-size);
+  font-weight: var(--text-headline-lg-mobile-weight);
+  line-height: var(--text-headline-lg-mobile-line-height);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.pageSubtitle {
+  font-size: var(--text-body-md-size);
+  color: var(--color-on-surface-variant);
+  margin: 2px 0 0;
+}
+
+/* ─── Form ────────────────────────────────────────────────────────────── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* ─── Field group ─────────────────────────────────────────────────────── */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-base);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.label {
+  font-size: var(--text-label-md-size);
+  font-weight: var(--text-label-md-weight);
+  color: var(--color-on-surface);
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--color-on-surface-variant);
+}
+
+/* ─── Counselor grid ──────────────────────────────────────────────────── */
+.counselorGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-base);
+}
+
+.counselorOption {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-xl);
+  border: 2px solid var(--color-outline-variant);
+  background-color: var(--color-surface-container-lowest);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.counselorOption:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface-container-low);
+}
+
+.counselorOptionSelected {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface-container-low);
+}
+
+.hiddenRadio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.counselorAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-container);
+  color: var(--color-on-primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-caption-size);
+  font-weight: 700;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.counselorDetails {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.counselorName {
+  font-size: var(--text-body-md-size);
+  font-weight: 600;
+  color: var(--color-on-surface);
+}
+
+.counselorSpec {
+  font-size: var(--text-caption-size);
+  color: var(--color-on-surface-variant);
+}
+
+.checkIcon {
+  font-size: 20px;
+  color: var(--color-outline-variant);
+  flex-shrink: 0;
+}
+
+.counselorOptionSelected .checkIcon {
+  color: var(--color-primary);
+}
+
+/* ─── Inputs ──────────────────────────────────────────────────────────── */
+.select,
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-outline-variant);
+  background-color: var(--color-surface-container-lowest);
+  color: var(--color-on-surface);
+  font-family: var(--font-family);
+  font-size: var(--text-body-md-size);
+  outline: none;
+  transition: border-color 0.15s ease;
+  box-sizing: border-box;
+  appearance: auto;
+}
+
+.select:focus,
+.input:focus {
+  border-color: var(--color-primary);
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-outline-variant);
+  background-color: var(--color-surface-container-lowest);
+  color: var(--color-on-surface);
+  font-family: var(--font-family);
+  font-size: var(--text-body-md-size);
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.textarea::placeholder,
+.input::placeholder {
+  color: var(--color-outline);
+}
+
+/* ─── Submit button ───────────────────────────────────────────────────── */
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-base);
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  border: none;
+  font-family: var(--font-family);
+  font-size: var(--text-body-md-size);
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  align-self: flex-start;
+}
+
+.submitBtn:hover {
+  opacity: 0.88;
+}

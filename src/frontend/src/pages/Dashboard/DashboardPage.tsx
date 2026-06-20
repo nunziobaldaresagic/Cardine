@@ -1,11 +1,62 @@
-import { useState, useEffect } from 'react'
 import { Link } from '@tanstack/react-router'
 import type { Employee, ProximityResult } from '@/services/types'
-import { getEmployee } from '@/services/employees'
-import { getProximity } from '@/services/proximity'
 import styles from './DashboardPage.module.css'
 
-const DEMO_EMPLOYEE_ID = '01_giulia_ferraro'
+// ─── Mock data ────────────────────────────────────────────────────────────────
+
+const MOCK_EMPLOYEE: Employee = {
+  id: '01_giulia_ferraro',
+  personal: { name: 'Giulia Ferraro', email: 'giulia.ferraro@techcorp.it', location: 'Milano, IT' },
+  current_role: {
+    title: 'Software Engineer',
+    company: 'TechCorp Srl',
+    since: '2021-03',
+    hr_level: { code: 'M1', label: 'Mid-Level' },
+  },
+  total_years_experience: 5,
+  certifications: [],
+  technical_skills: {
+    linguaggi: [{ name: 'TypeScript' }, { name: 'Python' }, { name: 'SQL' }],
+    frameworks: [{ name: 'React' }, { name: 'Node.js' }],
+    strumenti: [{ name: 'Docker' }, { name: 'Azure DevOps' }],
+  },
+  soft_skills: ['Problem Solving', 'Team Leadership', 'Comunicazione'],
+  career_path: {
+    current_level: { code: 'M1', label: 'Mid-Level' },
+    suggested_next_level: { code: 'M2', label: 'Senior Engineer' },
+    estimated_timeframe_months: 12,
+    growth_areas: [],
+  },
+}
+
+const MOCK_PROXIMITY: ProximityResult[] = [
+  {
+    targetLevel: 'M2',
+    targetLabel: 'Senior Software Engineer',
+    score: 72,
+    coveredCount: 8,
+    totalMandatory: 10,
+    gaps: [],
+  },
+  {
+    targetLevel: 'M3',
+    targetLabel: 'Lead Engineer',
+    score: 45,
+    coveredCount: 5,
+    totalMandatory: 12,
+    gaps: [],
+  },
+  {
+    targetLevel: 'M1_PM',
+    targetLabel: 'Product Manager',
+    score: 38,
+    coveredCount: 4,
+    totalMandatory: 11,
+    gaps: [],
+  },
+]
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function scoreColor(score: number): string {
   if (score >= 70) return 'var(--color-tertiary)'
@@ -38,6 +89,8 @@ function extractSkillNames(raw: Record<string, unknown>): string[] {
   return names
 }
 
+// ─── CircularScore ────────────────────────────────────────────────────────────
+
 interface CircularScoreProps {
   score: number
 }
@@ -50,95 +103,26 @@ function CircularScore({ score }: CircularScoreProps) {
 
   return (
     <svg className={styles.progressRing} viewBox="0 0 88 88" aria-hidden="true">
+      <circle cx="44" cy="44" r={radius} strokeWidth="8" fill="none" stroke="var(--color-outline-variant)" />
       <circle
-        cx="44"
-        cy="44"
-        r={radius}
-        strokeWidth="8"
-        fill="none"
-        stroke="var(--color-outline-variant)"
-      />
-      <circle
-        cx="44"
-        cy="44"
-        r={radius}
-        strokeWidth="8"
-        fill="none"
+        cx="44" cy="44" r={radius} strokeWidth="8" fill="none"
         stroke={color}
         strokeDasharray={circumference}
         strokeDashoffset={offset}
         strokeLinecap="round"
         transform="rotate(-90 44 44)"
       />
-      <text
-        x="44"
-        y="44"
-        textAnchor="middle"
-        dominantBaseline="central"
-        className={styles.progressText}
-        style={{ fill: color }}
-      >
+      <text x="44" y="44" textAnchor="middle" dominantBaseline="central" className={styles.progressText} style={{ fill: color }}>
         {score}%
       </text>
     </svg>
   )
 }
 
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
 export default function DashboardPage() {
-  const [employee, setEmployee] = useState<Employee | null>(null)
-  const [proximity, setProximity] = useState<ProximityResult[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  function load() {
-    setLoading(true)
-    setError(null)
-    Promise.all([
-      getEmployee(DEMO_EMPLOYEE_ID),
-      getProximity(DEMO_EMPLOYEE_ID),
-    ])
-      .then(([emp, prox]) => {
-        setEmployee(emp)
-        setProximity(prox)
-      })
-      .catch(() => {
-        setError('Impossibile caricare i dati. Verifica la connessione e riprova.')
-      })
-      .finally(() => setLoading(false))
-  }
-
-  useEffect(() => { load() }, [])
-
-  /* ─── Loading state ──────────────────────────────────────────── */
-  if (loading) {
-    return (
-      <div className={styles.stateContainer} aria-busy="true" aria-label="Caricamento in corso">
-        <div className={styles.skeleton} style={{ height: '140px' }} />
-        <div className={styles.skeleton} style={{ height: '96px' }} />
-        <div className={styles.skeleton} style={{ height: '96px' }} />
-        <div className={styles.skeleton} style={{ height: '160px' }} />
-      </div>
-    )
-  }
-
-  /* ─── Error state ────────────────────────────────────────────── */
-  if (error) {
-    return (
-      <div className={styles.stateContainer}>
-        <span className={`material-symbols-outlined ${styles.errorIcon}`} aria-hidden="true">
-          error
-        </span>
-        <p className={styles.errorText}>{error}</p>
-        <button type="button" className={styles.retryBtn} onClick={load}>
-          Riprova
-        </button>
-      </div>
-    )
-  }
-
-  if (!employee) return null
-
-  const { personal, current_role, career_path, total_years_experience, technical_skills, soft_skills } = employee
+  const { personal, current_role, career_path, total_years_experience, technical_skills, soft_skills } = MOCK_EMPLOYEE
   const allSkills = [...extractSkillNames(technical_skills), ...soft_skills]
   const displayedSkills = allSkills.slice(0, 6)
 
@@ -190,46 +174,38 @@ export default function DashboardPage() {
       {/* ─── Proximity section ──────────────────────────────────── */}
       <section className={styles.section} aria-labelledby="proximity-heading">
         <h2 id="proximity-heading" className={styles.sectionTitle}>Ruoli più vicini a te</h2>
+        <div className={styles.proximityGrid}>
+          {MOCK_PROXIMITY.map(p => {
+            const missingCount = p.totalMandatory - p.coveredCount
+            return (
+              <div
+                key={p.targetLevel}
+                className={styles.proximityCard}
+                style={{ borderLeftColor: scoreColor(p.score) }}
+              >
+                <CircularScore score={p.score} />
 
-        {proximity.length === 0 ? (
-          <p className={styles.emptyHint}>Nessun ruolo di prossimità disponibile.</p>
-        ) : (
-          <div className={styles.proximityGrid}>
-            {proximity.map(p => {
-              const missingCount = p.totalMandatory - p.coveredCount
-              return (
-                <div
-                  key={p.targetLevel}
-                  className={styles.proximityCard}
-                  style={{ borderLeftColor: scoreColor(p.score) }}
-                >
-                  <CircularScore score={p.score} />
-
-                  <div className={styles.proximityInfo}>
-                    <span
-                      className={styles.matchBadge}
-                      style={{ color: scoreColor(p.score) }}
-                    >
-                      {p.score}% Match
-                    </span>
-                    <h3 className={styles.proximityRole}>{p.targetLabel}</h3>
-                    <p className={styles.proximitySub}>{gapsText(missingCount)}</p>
-                  </div>
-
-                  <Link
-                    to="/app/gap"
-                    className={styles.proximityArrow}
-                    aria-label={`Analisi gap per ${p.targetLabel}`}
-                  >
-                    <span className="material-symbols-outlined" aria-hidden="true">
-                      arrow_forward
-                    </span>
-                  </Link>
+                <div className={styles.proximityInfo}>
+                  <span className={styles.matchBadge} style={{ color: scoreColor(p.score) }}>
+                    {p.score}% Match
+                  </span>
+                  <h3 className={styles.proximityRole}>{p.targetLabel}</h3>
+                  <p className={styles.proximitySub}>{gapsText(missingCount)}</p>
                 </div>
-              )
-            })}
-          </div>
-        )}
+
+                <Link
+                  to="/app/gap"
+                  className={styles.proximityArrow}
+                  aria-label={`Analisi gap per ${p.targetLabel}`}
+                >
+                  <span className="material-symbols-outlined" aria-hidden="true">
+                    arrow_forward
+                  </span>
+                </Link>
+              </div>
+            )
+          })}
+        </div>
       </section>
 
       {/* ─── Roadmap section ────────────────────────────────────── */}

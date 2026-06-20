@@ -1,0 +1,175 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * ProposeTimePage — CSS Modules
+ * Solo token CSS da tokens.css — nessun hex hardcoded.
+ * ────────────────────────────────────────────────────────────────────────── */
+
+/* ─── Pagina ──────────────────────────────────────────────────────────── */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ─── Header ──────────────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  color: var(--color-on-surface-variant);
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+  margin-top: 4px;
+}
+
+.backBtn:hover {
+  background-color: var(--color-surface-container);
+}
+
+.pageTitle {
+  font-size: var(--text-headline-lg-mobile-size);
+  font-weight: var(--text-headline-lg-mobile-weight);
+  line-height: var(--text-headline-lg-mobile-line-height);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.pageSubtitle {
+  font-size: var(--text-body-md-size);
+  color: var(--color-on-surface-variant);
+  margin: 2px 0 0;
+}
+
+/* ─── Day groups ──────────────────────────────────────────────────────── */
+.slotGroups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.dayGroup {
+  background-color: var(--color-surface-container-lowest);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.dayLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-base);
+  font-size: var(--text-body-lg-size);
+  font-weight: 600;
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.dayLabel .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--color-primary);
+}
+
+/* ─── Time grid ───────────────────────────────────────────────────────── */
+.timeGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-base);
+}
+
+.timeSlot {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-outline-variant);
+  background-color: var(--color-surface-container-low);
+  color: var(--color-on-surface);
+  font-family: var(--font-family);
+  font-size: var(--text-body-md-size);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.timeSlot .material-symbols-outlined {
+  font-size: 16px;
+  color: var(--color-on-surface-variant);
+}
+
+.timeSlot:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface-container);
+}
+
+.timeSlotSelected {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.timeSlotSelected .material-symbols-outlined {
+  color: var(--color-on-primary);
+}
+
+/* ─── Confirm bar ─────────────────────────────────────────────────────── */
+.confirmBar {
+  position: sticky;
+  bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  background-color: var(--color-surface-container-lowest);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card-hover);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-outline-variant);
+}
+
+.confirmText {
+  display: flex;
+  align-items: center;
+  gap: var(--space-base);
+  font-size: var(--text-body-md-size);
+  font-weight: 600;
+  color: var(--color-tertiary);
+}
+
+.confirmText .material-symbols-outlined {
+  font-size: 20px;
+}
+
+.confirmBtn {
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  border: none;
+  font-family: var(--font-family);
+  font-size: var(--text-body-md-size);
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.confirmBtn:hover {
+  opacity: 0.88;
+}

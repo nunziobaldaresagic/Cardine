@@ -1,0 +1,289 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * AppointmentsPage — CSS Modules
+ * Solo token CSS da tokens.css — nessun hex hardcoded.
+ * ────────────────────────────────────────────────────────────────────────── */
+
+/* ─── Pagina ──────────────────────────────────────────────────────────── */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ─── Header ──────────────────────────────────────────────────────────── */
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.pageTitle {
+  font-size: var(--text-headline-lg-size);
+  font-weight: var(--text-headline-lg-weight);
+  line-height: var(--text-headline-lg-line-height);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.pageSubtitle {
+  font-size: var(--text-body-md-size);
+  color: var(--color-on-surface-variant);
+  margin: 4px 0 0;
+}
+
+.newBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-base);
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  text-decoration: none;
+  font-family: var(--font-family);
+  font-size: var(--text-body-md-size);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.newBtn:hover {
+  opacity: 0.88;
+}
+
+/* ─── Stats row ───────────────────────────────────────────────────────── */
+.statsRow {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.statCard {
+  flex: 1;
+  min-width: 110px;
+  background-color: var(--color-surface-container-lowest);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.statCard .material-symbols-outlined {
+  font-size: 28px;
+  color: var(--color-primary);
+}
+
+.statValue {
+  display: block;
+  font-size: var(--text-headline-md-size);
+  font-weight: 700;
+  color: var(--color-on-surface);
+  line-height: 1;
+}
+
+.statLabel {
+  display: block;
+  font-size: var(--text-caption-size);
+  color: var(--color-on-surface-variant);
+  margin-top: 2px;
+}
+
+/* ─── Section heading ─────────────────────────────────────────────────── */
+.sectionTitle {
+  font-size: var(--text-headline-md-size);
+  font-weight: var(--text-headline-md-weight);
+  line-height: var(--text-headline-md-line-height);
+  color: var(--color-on-surface);
+  margin: 0 0 var(--space-sm);
+}
+
+/* ─── Card list ───────────────────────────────────────────────────────── */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* ─── Appointment card ────────────────────────────────────────────────── */
+.card {
+  background-color: var(--color-surface-container-lowest);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  border-left: 4px solid var(--color-outline-variant);
+  transition: box-shadow 0.15s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Border accent by status */
+.cardBorderConfermato { border-left-color: var(--color-tertiary); }
+.cardBorderInAttesa   { border-left-color: var(--color-secondary); }
+.cardBorderCompletato { border-left-color: var(--color-outline); }
+.cardBorderAnnullato  { border-left-color: var(--color-error); }
+
+/* ─── Date block ──────────────────────────────────────────────────────── */
+.cardDate {
+  flex-shrink: 0;
+  width: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-surface-container);
+  border-radius: var(--radius-lg);
+  padding: var(--space-base) var(--space-sm);
+}
+
+.dateDay {
+  display: block;
+  font-size: var(--text-headline-md-size);
+  font-weight: 700;
+  color: var(--color-on-surface);
+  line-height: 1;
+}
+
+.dateMonth {
+  display: block;
+  font-size: var(--text-caption-size);
+  color: var(--color-on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+/* ─── Card body ───────────────────────────────────────────────────────── */
+.cardBody {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.counselorAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-container);
+  color: var(--color-on-primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-caption-size);
+  font-weight: 700;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.counselorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.counselorName {
+  font-size: var(--text-body-md-size);
+  font-weight: 600;
+  color: var(--color-on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardTime {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: var(--text-caption-size);
+  color: var(--color-on-surface-variant);
+}
+
+.cardTime .material-symbols-outlined {
+  font-size: 14px;
+}
+
+.cardTopic {
+  font-size: var(--text-body-md-size);
+  color: var(--color-on-surface-variant);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ─── Status badge ────────────────────────────────────────────────────── */
+.cardSide {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-caption-size);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.statusBadge .material-symbols-outlined {
+  font-size: 14px;
+}
+
+.statusConfermato {
+  background-color: var(--color-tertiary-container);
+  color: var(--color-on-tertiary-container);
+}
+
+.statusInAttesa {
+  background-color: var(--color-secondary-container);
+  color: var(--color-on-secondary-container);
+}
+
+.statusCompletato {
+  background-color: var(--color-surface-container-high);
+  color: var(--color-on-surface-variant);
+}
+
+.statusAnnullato {
+  background-color: var(--color-error-container);
+  color: var(--color-on-error-container);
+}
+
+/* ─── Mobile ──────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .card {
+    flex-wrap: wrap;
+  }
+
+  .cardSide {
+    width: 100%;
+  }
+
+  .pageTitle {
+    font-size: var(--text-headline-lg-mobile-size);
+  }
+}
