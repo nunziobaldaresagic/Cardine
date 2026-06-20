@@ -21,8 +21,8 @@ msalInstance.initialize().then(async () => {
       JSON.stringify({
         id: account.homeAccountId,
         name: account.name ?? account.username,
-        role: 'employee',
-      }),
+        role: 'employee'
+      })
     );
   } else if (!result) {
     // Nessun redirect in corso: se c'è già un account MSAL ma non il nostro
@@ -32,7 +32,7 @@ msalInstance.initialize().then(async () => {
       try {
         const silent = await msalInstance.acquireTokenSilent({
           scopes: LOGIN_SCOPES,
-          account: accounts[0],
+          account: accounts[0]
         });
         localStorage.setItem('access_token', silent.idToken);
         localStorage.setItem(
@@ -40,8 +40,8 @@ msalInstance.initialize().then(async () => {
           JSON.stringify({
             id: accounts[0].homeAccountId,
             name: accounts[0].name ?? accounts[0].username,
-            role: 'employee',
-          }),
+            role: 'employee'
+          })
         );
       } catch {
         // Token scaduto o non rinnovabile: l'AuthLayout reindirizzerà a /login

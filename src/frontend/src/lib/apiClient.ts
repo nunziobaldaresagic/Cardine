@@ -5,12 +5,12 @@ import { LOGIN_SCOPES } from './msalConfig';
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL ?? '/api',
   headers: {
-    'Content-Type': 'application/json',
-  },
+    'Content-Type': 'application/json'
+  }
 });
 
 // Attach JWT access token to every request
-apiClient.interceptors.request.use((config) => {
+apiClient.interceptors.request.use(config => {
   const token = localStorage.getItem('access_token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -21,7 +21,7 @@ apiClient.interceptors.request.use((config) => {
 // On 401: tenta rinnovo silenzioso MSAL, poi riprova la request.
 // Se il rinnovo fallisce (o non c'è account MSAL) → redirect /login.
 apiClient.interceptors.response.use(
-  (response) => response,
+  response => response,
   async (error: unknown) => {
     if (!axios.isAxiosError(error) || error.response?.status !== 401) {
       return Promise.reject(error);
@@ -39,7 +39,7 @@ apiClient.interceptors.response.use(
     try {
       const result = await msalInstance.acquireTokenSilent({
         scopes: LOGIN_SCOPES,
-        account: accounts[0],
+        account: accounts[0]
       });
 
       // Aggiorna il token in localStorage
@@ -56,7 +56,7 @@ apiClient.interceptors.response.use(
       window.location.href = '/login';
       return Promise.reject(error);
     }
-  },
+  }
 );
 
 export default apiClient;

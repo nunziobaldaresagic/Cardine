@@ -97,12 +97,7 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <button
-              type='button'
-              className={styles.ctaBtn}
-              onClick={handleMsalLogin}
-              disabled={loading !== null}
-            >
+            <button type='button' className={styles.ctaBtn} onClick={handleMsalLogin} disabled={loading !== null}>
               {MS_ICON}
               {loading === 'employee' ? 'Accesso in corso…' : 'Entra con Microsoft Entra ID'}
             </button>
