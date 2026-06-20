@@ -1,0 +1,498 @@
+[
+  {
+    "styleId": "AGICTitolo2Carattere",
+    "type": "character",
+    "name": "AGIC Titolo 2 Carattere",
+    "basedOn": "AGICcorpoCarattere",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AGICTitoloParagrafoCarattere",
+    "type": "character",
+    "name": "AGIC Titolo Paragrafo Carattere",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AGICTitoloallBCarattere",
+    "type": "character",
+    "name": "AGIC Titolo all.B Carattere",
+    "basedOn": "StilepredefinitoCarattere",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AGICTitoloallegatoCarattere",
+    "type": "character",
+    "name": "AGIC Titolo allegato Carattere",
+    "basedOn": "HeaderChar",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AGICcorpoCarattere",
+    "type": "character",
+    "name": "AGIC corpo Carattere",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AMElencopuntatoCarattere",
+    "type": "character",
+    "name": "AM Elenco puntato Carattere",
+    "basedOn": null,
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AMNormaleCarattere",
+    "type": "character",
+    "name": "AM Normale Carattere",
+    "basedOn": null,
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AgicParagrafoallbCarattere",
+    "type": "character",
+    "name": "Agic Paragrafo all.b Carattere",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AgicpuntatoallBCarattere",
+    "type": "character",
+    "name": "Agic puntato all.B Carattere",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "BalloonTextChar",
+    "type": "character",
+    "name": "Balloon Text Char",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "BodyText3Char",
+    "type": "character",
+    "name": "Body Text 3 Char",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "DefaultParagraphFont",
+    "type": "character",
+    "name": "Default Paragraph Font",
+    "basedOn": null,
+    "next": null,
+    "default": "1"
+  },
+  {
+    "styleId": "FooterChar",
+    "type": "character",
+    "name": "Footer Char",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "HeaderChar",
+    "type": "character",
+    "name": "Header Char",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "Hyperlink",
+    "type": "character",
+    "name": "Hyperlink",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "IndiceAllegatiCarattere",
+    "type": "character",
+    "name": "Indice Allegati Carattere",
+    "basedOn": "ListParagraphChar",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "IndiceCarattere",
+    "type": "character",
+    "name": "Indice Carattere",
+    "basedOn": "TOC1Char",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "ListParagraphChar",
+    "type": "character",
+    "name": "List Paragraph Char",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "PlaceholderText",
+    "type": "character",
+    "name": "Placeholder Text",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "SottotitolocopertinaCarattere",
+    "type": "character",
+    "name": "Sottotitolo copertina Carattere",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "StilepredefinitoCarattere",
+    "type": "character",
+    "name": "Stile predefinito Carattere",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "TOC1Char",
+    "type": "character",
+    "name": "TOC 1 Char",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "TitleChar",
+    "type": "character",
+    "name": "Title Char",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "TitoloIndiceCarattere",
+    "type": "character",
+    "name": "Titolo Indice Carattere",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "TitolocopertinaCarattere",
+    "type": "character",
+    "name": "Titolo copertina Carattere",
+    "basedOn": "DefaultParagraphFont",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "NoList",
+    "type": "numbering",
+    "name": "No List",
+    "basedOn": null,
+    "next": null,
+    "default": "1"
+  },
+  {
+    "styleId": "AGICTitolo2",
+    "type": "paragraph",
+    "name": "AGIC Titolo 2",
+    "basedOn": "AGICcorpo",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AGICTitoloParagrafo",
+    "type": "paragraph",
+    "name": "AGIC Titolo Paragrafo",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AGICTitoloallB",
+    "type": "paragraph",
+    "name": "AGIC Titolo all.B",
+    "basedOn": "Stilepredefinito",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AGICTitoloallegato",
+    "type": "paragraph",
+    "name": "AGIC Titolo allegato",
+    "basedOn": "Header",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AGICcorpo",
+    "type": "paragraph",
+    "name": "AGIC corpo",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AMElencopuntato",
+    "type": "paragraph",
+    "name": "AM Elenco puntato",
+    "basedOn": "Header",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AMNormale",
+    "type": "paragraph",
+    "name": "AM Normale",
+    "basedOn": "Header",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AgicParagrafoallb",
+    "type": "paragraph",
+    "name": "Agic Paragrafo all.b",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "AgicpuntatoallB",
+    "type": "paragraph",
+    "name": "Agic puntato all.B",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "BalloonText",
+    "type": "paragraph",
+    "name": "Balloon Text",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "BodyText3",
+    "type": "paragraph",
+    "name": "Body Text 3",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "CNHead1",
+    "type": "paragraph",
+    "name": "CN Head 1",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "CNHead2",
+    "type": "paragraph",
+    "name": "CN Head 2",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "CNHead3",
+    "type": "paragraph",
+    "name": "CN Head 3",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "CNLevel1List",
+    "type": "paragraph",
+    "name": "CN Level 1 List",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "CNLevel2List",
+    "type": "paragraph",
+    "name": "CN Level 2 List",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "CNLevel3List",
+    "type": "paragraph",
+    "name": "CN Level 3 List",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "CNLevel4List",
+    "type": "paragraph",
+    "name": "CN Level 4 List",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "CNLevel5List",
+    "type": "paragraph",
+    "name": "CN Level 5 List",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "CorpoA",
+    "type": "paragraph",
+    "name": "Corpo A",
+    "basedOn": null,
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "Indice",
+    "type": "paragraph",
+    "name": "Indice",
+    "basedOn": "TOC1",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "IndiceAllegati",
+    "type": "paragraph",
+    "name": "Indice Allegati",
+    "basedOn": "ListParagraph",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "Intestazione2",
+    "type": "paragraph",
+    "name": "Intestazione 2",
+    "basedOn": "Stilepredefinito",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "ListParagraph",
+    "type": "paragraph",
+    "name": "List Paragraph",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "Normal",
+    "type": "paragraph",
+    "name": "Normal",
+    "basedOn": null,
+    "next": null,
+    "default": "1"
+  },
+  {
+    "styleId": "Sottotitolocopertina",
+    "type": "paragraph",
+    "name": "Sottotitolo copertina",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "Stilepredefinito",
+    "type": "paragraph",
+    "name": "Stile predefinito",
+    "basedOn": null,
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "Title",
+    "type": "paragraph",
+    "name": "Title",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "TitoloIndice",
+    "type": "paragraph",
+    "name": "Titolo Indice",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "Titolocopertina",
+    "type": "paragraph",
+    "name": "Titolo copertina",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "Footer",
+    "type": "paragraph",
+    "name": "footer",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "Header",
+    "type": "paragraph",
+    "name": "header",
+    "basedOn": "Normal",
+    "next": null,
+    "default": null
+  },
+  {
+    "styleId": "TOC1",
+    "type": "paragraph",
+    "name": "toc 1",
+    "basedOn": "Normal",
+    "next": "Normal",
+    "default": null
+  },
+  {
+    "styleId": "Grigliatabella1",
+    "type": "table",
+    "name": "Griglia tabella1",
+    "basedOn": "TableNormal",
+    "next": "TableGrid",
+    "default": null
+  },
+  {
+    "styleId": "TableNormal",
+    "type": "table",
+    "name": "Normal Table",
+    "basedOn": null,
+    "next": null,
+    "default": "1"
+  },
+  {
+    "styleId": "TableGrid",
+    "type": "table",
+    "name": "Table Grid",
+    "basedOn": "TableNormal",
+    "next": null,
+    "default": null
+  }
+]

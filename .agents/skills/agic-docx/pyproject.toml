@@ -1,0 +1,19 @@
+[project]
+name = "agic-docx"
+version = "1.0.0"
+description = "AGIC template-locked Word document generation"
+requires-python = ">=3.8"
+dependencies = [
+    "mistune>=3.0.0",
+    "python-docx>=1.0.0",
+    "defusedxml>=0.7.0",
+]
+
+[project.optional-dependencies]
+dev = []
+
+[tool.setuptools]
+py-modules = []
+
+[tool.setuptools.packages.find]
+where = ["scripts"]

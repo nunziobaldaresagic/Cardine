@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "agic-docx": {
+      "source": "AgicCompany/agic-skills",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/agic-docx/SKILL.md",
+      "computedHash": "0077ad073ba069ab0974ad466a2ad59bb692e6ec43956b9694adc1b530a626d5"
+    }
+  }
+}
