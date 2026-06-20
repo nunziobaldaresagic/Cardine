@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react'
-import { useIsAuthenticated, useMsal } from '@azure/msal-react'
-import { InteractionStatus } from '@azure/msal-browser'
-import { loginRequest, LOGIN_SCOPES } from '@/lib/msalConfig'
+import { useState } from 'react'
+import { login } from '@/services/auth'
 import styles from './LoginPage.module.css'
 
 const CARDINE_LOGO =
@@ -19,44 +17,21 @@ const MS_ICON = (
 const YEAR = new Date().getFullYear()
 
 export default function LoginPage() {
-  const { instance, inProgress } = useMsal()
-  const isAuthenticated = useIsAuthenticated()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState<'employee' | 'counselor' | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  // Dopo il redirect MSAL: acquisisci token, salva in localStorage e vai alla dashboard
-  useEffect(() => {
-    if (isAuthenticated && inProgress === InteractionStatus.None) {
-      const account = instance.getAllAccounts()[0]
-      if (!account) return
-      instance
-        .acquireTokenSilent({ scopes: LOGIN_SCOPES, account })
-        .then((result) => {
-          localStorage.setItem('access_token', result.idToken)
-          localStorage.setItem(
-            'auth_user',
-            JSON.stringify({
-              id: account.homeAccountId,
-              name: account.name ?? account.username,
-              role: 'employee',
-            }),
-          )
-          window.location.href = '/app/dashboard'
-        })
-        .catch(() => {
-          void instance.loginRedirect(loginRequest)
-        })
-    }
-  }, [isAuthenticated, inProgress, instance])
-
-  async function handleLogin() {
-    setLoading(true)
+  async function handleLogin(role: 'employee' | 'counselor') {
+    setLoading(role)
     setError(null)
     try {
-      await instance.loginRedirect(loginRequest)
+      const res = await login(role)
+      localStorage.setItem('access_token', res.token)
+      localStorage.setItem('auth_user', JSON.stringify(res.user))
+      window.location.href = role === 'counselor' ? '/counselor/dashboard' : '/app/dashboard'
     } catch {
       setError('Accesso non riuscito. Riprova.')
-      setLoading(false)
+    } finally {
+      setLoading(null)
     }
   }
 
@@ -101,9 +76,13 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <button type="button" className={styles.ctaBtn} onClick={handleLogin} disabled={loading}>
+            <button type="button" className={styles.ctaBtn} onClick={() => handleLogin('employee')} disabled={loading !== null}>
               {MS_ICON}
-              {loading ? 'Accesso in corso…' : 'Entra con Microsoft Entra ID'}
+              {loading === 'employee' ? 'Accesso in corso…' : 'Entra con Microsoft Entra ID'}
+            </button>
+            <button type="button" className={styles.ctaBtnSecondary} onClick={() => handleLogin('counselor')} disabled={loading !== null}>
+              <span className="material-symbols-outlined" style={{ fontSize: '18px' }} aria-hidden="true">supervisor_account</span>
+              {loading === 'counselor' ? 'Accesso in corso…' : 'Accedi come Career Counselor'}
             </button>
             {error !== null && (
               <p className={styles.errorMsg}>{error}</p>
@@ -139,12 +118,16 @@ export default function LoginPage() {
 
               <div className={styles.desktopActions}>
                 {/* CTA — PRIMA della security su desktop */}
-                <button type="button" className={`${styles.ctaBtn} ${styles.ctaBtnDesktop}`} onClick={handleLogin} disabled={loading}>
+                <button type="button" className={`${styles.ctaBtn} ${styles.ctaBtnDesktop}`} onClick={() => handleLogin('employee')} disabled={loading !== null}>
                   {MS_ICON}
-                  {loading ? 'Accesso in corso…' : 'Entra con Microsoft Entra ID'}
+                  {loading === 'employee' ? 'Accesso in corso…' : 'Entra con Microsoft Entra ID'}
                   <span className={styles.ctaArrow} aria-hidden="true">
                     <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
                   </span>
+                </button>
+                <button type="button" className={styles.ctaBtnSecondary} onClick={() => handleLogin('counselor')} disabled={loading !== null}>
+                  <span className="material-symbols-outlined" style={{ fontSize: '18px' }} aria-hidden="true">supervisor_account</span>
+                  {loading === 'counselor' ? 'Accesso in corso…' : 'Accedi come Career Counselor'}
                 </button>
                 {error !== null && (
                   <p className={styles.errorMsg}>{error}</p>

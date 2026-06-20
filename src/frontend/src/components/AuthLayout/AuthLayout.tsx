@@ -1,6 +1,4 @@
 import { useEffect } from 'react'
-import { useIsAuthenticated, useMsal } from '@azure/msal-react'
-import { InteractionStatus } from '@azure/msal-browser'
 import { Link, Outlet, useNavigate, useRouterState } from '@tanstack/react-router'
 import { logout } from '@/services/auth'
 import styles from './AuthLayout.module.css'
@@ -38,19 +36,15 @@ export default function AuthLayout() {
   const navigate = useNavigate()
   const { location } = useRouterState()
   const pathname = location.pathname
-  const isAuthenticated = useIsAuthenticated()
-  const { inProgress, instance } = useMsal()
 
-  // Guard MSAL: redirect a /login se non autenticato
   useEffect(() => {
-    if (!isAuthenticated && inProgress === InteractionStatus.None) {
+    if (!localStorage.getItem('access_token')) {
       void navigate({ to: '/login' })
     }
-  }, [isAuthenticated, inProgress, navigate])
+  }, [navigate])
 
-  const msalAccount = instance.getAllAccounts()[0]
   const storedUser: AuthUser = JSON.parse(localStorage.getItem('auth_user') ?? '{}')
-  const name = msalAccount?.name ?? storedUser.name ?? ''
+  const name = storedUser.name ?? ''
   const role = storedUser.role ?? 'employee'
   const initial = (name.charAt(0) || 'U').toUpperCase()
 
@@ -58,10 +52,10 @@ export default function AuthLayout() {
 
   function handleLogout() {
     logout()
+    void navigate({ to: '/login' })
   }
 
-  // Blocca il render finché il guard non ha effettuato il redirect
-  if (!isAuthenticated && inProgress === InteractionStatus.None) {
+  if (!localStorage.getItem('access_token')) {
     return null
   }
 

@@ -170,7 +170,38 @@
 .ctaBtnDesktop {
   padding: var(--space-md);
 }
-.ctaArrow {
+/* Bottone secondario — Career Counselor */
+.ctaBtnSecondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-base);
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background-color: transparent;
+  color: var(--color-on-surface-variant);
+  font-family: var(--font-family);
+  font-size: var(--text-label-md-size);
+  font-weight: var(--text-label-md-weight);
+  letter-spacing: var(--text-label-md-letter-spacing);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+.ctaBtnSecondary:hover {
+  border-color: var(--color-outline);
+  color: var(--color-on-surface);
+  background-color: var(--color-surface-container-low);
+}
+.ctaBtnSecondary:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+.ctaBtnSecondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}.ctaArrow {
   margin-left: auto;
   display: flex;
   align-items: center;

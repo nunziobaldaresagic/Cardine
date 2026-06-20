@@ -2,14 +2,15 @@ import { Router } from 'express';
 
 const router = Router();
 
-router.post('/login', (_req, res) => {
+router.post('/login', (req, res) => {
+  const role = req.body?.role === 'counselor' ? 'counselor' : 'employee';
   res.json({
     ok: true,
     token: 'dev-token',
     user: {
-      id: 'dev-user',
-      role: 'employee',
-      name: 'Demo User',
+      id: `dev-${role}`,
+      role,
+      name: role === 'counselor' ? 'Demo Counselor' : 'Demo Dipendente',
     },
   });
 });
