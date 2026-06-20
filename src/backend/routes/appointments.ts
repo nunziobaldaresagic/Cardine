@@ -2,6 +2,8 @@ import { Router } from 'express';
 import type { Request, Response } from 'express';
 import prisma from '../db/prisma';
 import type { AppointmentStatus } from '../types';
+// Importa per attivare il declare module 'express-serve-static-core' in auth.ts
+import '../middleware/auth';
 
 const router = Router();
 

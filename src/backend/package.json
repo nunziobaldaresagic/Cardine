@@ -4,7 +4,7 @@
   "description": "Cardine backend PoC — REST API Node.js + TypeScript",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "nodemon --exec ts-node src/backend/server.ts",
+    "dev": "nodemon --exec ts-node server.ts",
     "build": "tsc",
     "start": "node dist/backend/server.js",
     "migrate": "prisma migrate deploy",
