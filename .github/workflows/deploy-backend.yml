@@ -35,7 +35,12 @@ jobs:
         working-directory: src/backend
         run: |
           npm ci
+          # Generate before tsc: db/prisma.ts imports PrismaClient, which
+          # @prisma/client only exports after `prisma generate`.
+          npx prisma generate
           npm run build
+          # Drop devDeps but keep @prisma/client + the generated client.
+          npm prune --omit=dev
 
       - name: Assemble run-from-package zip
         run: |
@@ -47,7 +52,7 @@ jobs:
           # tsc doesn't copy non-TS assets; server.ts reads openapi.yaml from
           # __dirname (dist/) at startup, so place it alongside the compiled JS.
           cp src/backend/openapi.yaml pkg/src/backend/dist/openapi.yaml
-          npm ci --omit=dev --prefix src/backend
+          # node_modules already pruned to prod + generated Prisma client.
           cp -r src/backend/node_modules pkg/src/backend/node_modules
           # loader.js (dist/data) reads __dirname/../../../mock-json at import.
           # With the compiled app under src/backend/, that resolves to
