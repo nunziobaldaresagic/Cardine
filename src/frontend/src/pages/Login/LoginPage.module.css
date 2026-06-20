@@ -1,0 +1,243 @@
+/* ─── Layout root ────────────────────────────────────────────────────────── */
+.root {
+  display: flex;
+  min-height: 100svh;
+  background-color: var(--color-background);
+}
+
+/* ─── Pannello branding (nascosto su mobile) ─────────────────────────────── */
+.branding {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .branding {
+    display: flex;
+    flex: 1;
+    background-color: var(--color-primary-container);
+    padding: var(--space-xl) var(--space-lg);
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.brandingInner {
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.brandingEyebrow {
+  font-size: var(--text-label-md-size);
+  font-weight: var(--text-label-md-weight);
+  letter-spacing: var(--text-label-md-letter-spacing);
+  color: var(--color-on-primary-container);
+  text-transform: uppercase;
+}
+
+.brandingHeadline {
+  font-size: var(--text-headline-lg-size);
+  font-weight: var(--text-headline-lg-weight);
+  line-height: var(--text-headline-lg-line-height);
+  letter-spacing: var(--text-headline-lg-letter-spacing);
+  color: var(--color-on-primary-fixed);
+}
+
+.brandingSubtitle {
+  font-size: var(--text-body-lg-size);
+  line-height: var(--text-body-lg-line-height);
+  color: var(--color-on-primary-fixed);
+  opacity: 0.85;
+}
+
+.featurePills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-base);
+  list-style: none;
+}
+
+.featurePills li {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--color-on-primary-fixed);
+  font-size: var(--text-label-md-size);
+  font-weight: var(--text-label-md-weight);
+  letter-spacing: var(--text-label-md-letter-spacing);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+}
+
+/* ─── Card login ──────────────────────────────────────────────────────────── */
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-lg) var(--space-md);
+  max-width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .card {
+    max-width: 560px;
+    padding: var(--space-xl);
+  }
+}
+
+.cardInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  flex: 1;
+  justify-content: center;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ─── Logo ───────────────────────────────────────────────────────────────── */
+.logo {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-base);
+  }
+}
+
+.logoMobile {
+  display: flex;
+  align-items: center;
+  gap: var(--space-base);
+}
+
+@media (min-width: 1024px) {
+  .logoMobile {
+    display: none;
+  }
+}
+
+.logoMark {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius);
+  background-color: var(--color-primary-container);
+}
+
+.logoText {
+  font-size: var(--text-headline-md-size);
+  font-weight: var(--text-headline-md-weight);
+  color: var(--color-primary);
+}
+
+/* ─── Headline e testo ───────────────────────────────────────────────────── */
+.headline {
+  font-size: var(--text-headline-lg-mobile-size);
+  font-weight: var(--text-headline-lg-mobile-weight);
+  line-height: var(--text-headline-lg-mobile-line-height);
+  color: var(--color-on-background);
+}
+
+@media (min-width: 1024px) {
+  .headline {
+    font-size: var(--text-headline-lg-size);
+    line-height: var(--text-headline-lg-line-height);
+  }
+}
+
+.subtitle {
+  font-size: var(--text-body-md-size);
+  line-height: var(--text-body-md-line-height);
+  color: var(--color-on-surface-variant);
+}
+
+/* ─── CTA button ──────────────────────────────────────────────────────────── */
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-base);
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-primary-container);
+  color: var(--color-on-primary-fixed);
+  font-family: var(--font-family);
+  font-size: var(--text-body-md-size);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cta:hover {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+/* ─── Security note ──────────────────────────────────────────────────────── */
+.securityNote {
+  display: flex;
+  gap: var(--space-base);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-surface-container-low);
+  border-radius: var(--radius);
+  align-items: flex-start;
+}
+
+.shieldIcon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-primary-container);
+}
+
+.securityNote strong {
+  display: block;
+  font-size: var(--text-label-md-size);
+  font-weight: var(--text-label-md-weight);
+  color: var(--color-on-surface);
+  margin-bottom: 2px;
+}
+
+.securityNote p {
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-line-height);
+  color: var(--color-on-surface-variant);
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-base);
+  justify-content: center;
+  padding-top: var(--space-lg);
+  font-size: var(--text-caption-size);
+  color: var(--color-on-surface-variant);
+}
+
+.footer a {
+  color: var(--color-primary-container);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer p {
+  width: 100%;
+  text-align: center;
+}
