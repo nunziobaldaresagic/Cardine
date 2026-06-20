@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useIsAuthenticated, useMsal } from '@azure/msal-react';
-import { InteractionStatus } from '@azure/msal-browser';
+import { useState } from 'react';
+import { useMsal } from '@azure/msal-react';
 import { login } from '@/services/auth';
-import { loginRequest, LOGIN_SCOPES } from '@/lib/msalConfig';
+import { loginRequest } from '@/lib/msalConfig';
 import styles from './LoginPage.module.css';
 
 const CARDINE_LOGO =
@@ -20,35 +19,9 @@ const MS_ICON = (
 const YEAR = new Date().getFullYear();
 
 export default function LoginPage() {
-  const { instance, inProgress } = useMsal();
-  const isAuthenticated = useIsAuthenticated();
+  const { instance } = useMsal();
   const [loading, setLoading] = useState<'employee' | 'counselor' | null>(null);
   const [error, setError] = useState<string | null>(null);
-
-  // Dopo il redirect MSAL: acquisisci token silenzioso, salva in localStorage e naviga
-  useEffect(() => {
-    if (isAuthenticated && inProgress === InteractionStatus.None) {
-      const account = instance.getAllAccounts()[0];
-      if (!account) return;
-      instance
-        .acquireTokenSilent({ scopes: LOGIN_SCOPES, account })
-        .then((result) => {
-          localStorage.setItem('access_token', result.idToken);
-          localStorage.setItem(
-            'auth_user',
-            JSON.stringify({
-              id: account.homeAccountId,
-              name: account.name ?? account.username,
-              role: 'employee',
-            }),
-          );
-          window.location.href = '/app/dashboard';
-        })
-        .catch(() => {
-          void instance.loginRedirect(loginRequest);
-        });
-    }
-  }, [isAuthenticated, inProgress, instance]);
 
   // Flusso MSAL per dipendente
   async function handleMsalLogin() {
