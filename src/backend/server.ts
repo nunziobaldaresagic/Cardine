@@ -19,7 +19,13 @@ import { resolveActor } from './middleware/resolveActor';
 const app = express();
 const PORT = process.env.PORT ?? 3001;
 
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: '*',
+  credentials: false,
+}));
+app.options('*', cors());
 app.use(express.json());
 
 // Route pubbliche — non richiedono token
