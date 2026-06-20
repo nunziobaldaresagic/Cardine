@@ -1,0 +1,360 @@
+/* ─────────────────────────────────────────────────────────────────────────
+ * DashboardPage — CSS Modules
+ * Fedele al design Stitch (projectId: 1573158552378221421)
+ * Solo token CSS da tokens.css — nessun hex hardcoded.
+ * ────────────────────────────────────────────────────────────────────────── */
+
+/* ─── Pagina ──────────────────────────────────────────────────────────── */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ─── Stati: loading / errore ─────────────────────────────────────────── */
+.stateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-xl) var(--space-md);
+  min-height: 280px;
+}
+
+.skeleton {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-container) 25%,
+    var(--color-surface-container-high) 50%,
+    var(--color-surface-container) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.errorIcon {
+  font-size: 48px;
+  color: var(--color-error);
+}
+
+.errorText {
+  font-size: var(--text-body-md-size);
+  color: var(--color-on-surface-variant);
+  text-align: center;
+  max-width: 380px;
+}
+
+.retryBtn {
+  padding: 0.625rem 1.5rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  border: none;
+  font-family: var(--font-family);
+  font-size: var(--text-body-md-size);
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.retryBtn:hover {
+  opacity: 0.88;
+}
+
+/* ─── Sezione generica ────────────────────────────────────────────────── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.sectionTitle {
+  font-size: var(--text-headline-md-size);
+  font-weight: var(--text-headline-md-weight);
+  line-height: var(--text-headline-md-line-height);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.emptyHint {
+  font-size: var(--text-body-md-size);
+  color: var(--color-on-surface-variant);
+}
+
+/* ─── Profile card ────────────────────────────────────────────────────── */
+.profileCard {
+  background-color: var(--color-surface-container-lowest);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.profileTop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-xs);
+}
+
+.profileAvatar {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-container);
+  color: var(--color-on-primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.profileName {
+  font-size: var(--text-headline-lg-mobile-size);
+  font-weight: var(--text-headline-lg-mobile-weight);
+  line-height: var(--text-headline-lg-mobile-line-height);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.profileRole {
+  font-size: var(--text-body-md-size);
+  color: var(--color-on-surface-variant);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0;
+}
+
+.profileSep {
+  color: var(--color-outline);
+  margin: 0 2px;
+}
+
+.hrBadge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-secondary-container);
+  color: var(--color-on-secondary-container);
+  font-size: var(--text-caption-size);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  width: fit-content;
+}
+
+/* Meta: location / experience / next level */
+.profileMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-base) var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-outline-variant);
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-body-md-size);
+  color: var(--color-on-surface-variant);
+}
+
+.metaItem .material-symbols-outlined {
+  font-size: 18px;
+  color: var(--color-primary);
+}
+
+/* Skills chips */
+.skillsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-base);
+  padding-top: var(--space-xs);
+}
+
+.skillChip {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-container);
+  color: var(--color-on-surface-variant);
+  font-size: var(--text-caption-size);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ─── Proximity grid ──────────────────────────────────────────────────── */
+.proximityGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+@media (min-width: 640px) {
+  .proximityGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-sm);
+  }
+}
+
+.proximityCard {
+  background-color: var(--color-surface-container-lowest);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  border-left: 4px solid transparent;
+  transition: box-shadow 0.15s ease;
+}
+
+.proximityCard:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* SVG progress ring */
+.progressRing {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+}
+
+.progressText {
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Proximity info */
+.proximityInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.matchBadge {
+  font-size: var(--text-caption-size);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.proximityRole {
+  font-size: var(--text-body-lg-size);
+  font-weight: 600;
+  line-height: var(--text-body-lg-line-height);
+  color: var(--color-on-surface);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.proximitySub {
+  font-size: var(--text-caption-size);
+  color: var(--color-on-surface-variant);
+  margin: 0;
+}
+
+/* Arrow button */
+.proximityArrow {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-container);
+  color: var(--color-on-surface-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.proximityArrow:hover {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* ─── Roadmap empty state ─────────────────────────────────────────────── */
+.roadmapEmpty {
+  background-color: var(--color-surface-container-lowest);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-lg) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.roadmapIcon {
+  font-size: 48px;
+  color: var(--color-primary-container);
+}
+
+.roadmapEmptyTitle {
+  font-size: var(--text-headline-md-size);
+  font-weight: var(--text-headline-md-weight);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.roadmapEmptyText {
+  font-size: var(--text-body-md-size);
+  line-height: var(--text-body-md-line-height);
+  color: var(--color-on-surface-variant);
+  max-width: 440px;
+  margin: 0;
+}
+
+.roadmapBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-base);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  text-decoration: none;
+  font-family: var(--font-family);
+  font-size: var(--text-body-md-size);
+  font-weight: 600;
+  margin-top: var(--space-base);
+  transition: opacity 0.15s ease;
+}
+
+.roadmapBtn:hover {
+  opacity: 0.88;
+}
