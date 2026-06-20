@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
+import { useIsAuthenticated, useMsal } from '@azure/msal-react'
+import { InteractionStatus } from '@azure/msal-browser'
 import { Link, Outlet, useNavigate, useRouterState } from '@tanstack/react-router'
+import { logout } from '@/services/auth'
 import styles from './AuthLayout.module.css'
 
 // Paths are literals matching registered routes — typed union avoids `any`
@@ -35,29 +38,30 @@ export default function AuthLayout() {
   const navigate = useNavigate()
   const { location } = useRouterState()
   const pathname = location.pathname
+  const isAuthenticated = useIsAuthenticated()
+  const { inProgress, instance } = useMsal()
 
-  // Guard JWT: redirect a /login se il token è assente
+  // Guard MSAL: redirect a /login se non autenticato
   useEffect(() => {
-    if (!localStorage.getItem('access_token')) {
+    if (!isAuthenticated && inProgress === InteractionStatus.None) {
       void navigate({ to: '/login' })
     }
-  }, [navigate])
+  }, [isAuthenticated, inProgress, navigate])
 
-  const user: AuthUser = JSON.parse(localStorage.getItem('auth_user') ?? '{}')
-  const role = user.role ?? 'employee'
-  const name = user.name ?? ''
+  const msalAccount = instance.getAllAccounts()[0]
+  const storedUser: AuthUser = JSON.parse(localStorage.getItem('auth_user') ?? '{}')
+  const name = msalAccount?.name ?? storedUser.name ?? ''
+  const role = storedUser.role ?? 'employee'
   const initial = (name.charAt(0) || 'U').toUpperCase()
 
   const navItems = role === 'counselor' ? COUNSELOR_NAV : EMPLOYEE_NAV
 
   function handleLogout() {
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('auth_user')
-    void navigate({ to: '/login' })
+    logout()
   }
 
   // Blocca il render finché il guard non ha effettuato il redirect
-  if (!localStorage.getItem('access_token')) {
+  if (!isAuthenticated && inProgress === InteractionStatus.None) {
     return null
   }
 

@@ -1,5 +1,7 @@
-import { useState } from 'react'
-import { login } from '@/services/auth'
+import { useEffect, useState } from 'react'
+import { useIsAuthenticated, useMsal } from '@azure/msal-react'
+import { InteractionStatus } from '@azure/msal-browser'
+import { loginRequest, LOGIN_SCOPES } from '@/lib/msalConfig'
 import styles from './LoginPage.module.css'
 
 const CARDINE_LOGO =
@@ -17,20 +19,43 @@ const MS_ICON = (
 const YEAR = new Date().getFullYear()
 
 export default function LoginPage() {
+  const { instance, inProgress } = useMsal()
+  const isAuthenticated = useIsAuthenticated()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  // Dopo il redirect MSAL: acquisisci token, salva in localStorage e vai alla dashboard
+  useEffect(() => {
+    if (isAuthenticated && inProgress === InteractionStatus.None) {
+      const account = instance.getAllAccounts()[0]
+      if (!account) return
+      instance
+        .acquireTokenSilent({ scopes: LOGIN_SCOPES, account })
+        .then((result) => {
+          localStorage.setItem('access_token', result.idToken)
+          localStorage.setItem(
+            'auth_user',
+            JSON.stringify({
+              id: account.homeAccountId,
+              name: account.name ?? account.username,
+              role: 'employee',
+            }),
+          )
+          window.location.href = '/app/dashboard'
+        })
+        .catch(() => {
+          void instance.loginRedirect(loginRequest)
+        })
+    }
+  }, [isAuthenticated, inProgress, instance])
 
   async function handleLogin() {
     setLoading(true)
     setError(null)
     try {
-      const res = await login('demo@cardine.io', 'demo')
-      localStorage.setItem('access_token', res.token)
-      localStorage.setItem('auth_user', JSON.stringify(res.user))
-      window.location.href = '/app/dashboard'
+      await instance.loginRedirect(loginRequest)
     } catch {
       setError('Accesso non riuscito. Riprova.')
-    } finally {
       setLoading(false)
     }
   }
