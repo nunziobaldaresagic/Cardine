@@ -154,6 +154,17 @@
 }
 .ctaBtn:active { transform: scale(0.98); }
 .ctaBtn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+.ctaBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ─── Messaggio di errore ──────────────────────────────────────────────────── */
+.errorMsg {
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-line-height);
+  color: var(--color-error);
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
 
 /* CTA desktop: padding più grande + arrow hover */
 .ctaBtnDesktop {

@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { login } from '@/services/auth'
 import styles from './LoginPage.module.css'
 
 const CARDINE_LOGO =
@@ -15,8 +17,22 @@ const MS_ICON = (
 const YEAR = new Date().getFullYear()
 
 export default function LoginPage() {
-  function handleLogin() {
-    window.location.href = '/api/auth/entra/login'
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  async function handleLogin() {
+    setLoading(true)
+    setError(null)
+    try {
+      const res = await login('demo@cardine.io', 'demo')
+      localStorage.setItem('access_token', res.token)
+      localStorage.setItem('auth_user', JSON.stringify(res.user))
+      window.location.href = '/app/dashboard'
+    } catch {
+      setError('Accesso non riuscito. Riprova.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -60,10 +76,13 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <button type="button" className={styles.ctaBtn} onClick={handleLogin}>
+            <button type="button" className={styles.ctaBtn} onClick={handleLogin} disabled={loading}>
               {MS_ICON}
-              Entra con Microsoft Entra ID
+              {loading ? 'Accesso in corso…' : 'Entra con Microsoft Entra ID'}
             </button>
+            {error !== null && (
+              <p className={styles.errorMsg}>{error}</p>
+            )}
           </div>
 
           <div className={styles.mobileFooter}>
@@ -95,13 +114,16 @@ export default function LoginPage() {
 
               <div className={styles.desktopActions}>
                 {/* CTA — PRIMA della security su desktop */}
-                <button type="button" className={`${styles.ctaBtn} ${styles.ctaBtnDesktop}`} onClick={handleLogin}>
+                <button type="button" className={`${styles.ctaBtn} ${styles.ctaBtnDesktop}`} onClick={handleLogin} disabled={loading}>
                   {MS_ICON}
-                  Entra con Microsoft Entra ID
+                  {loading ? 'Accesso in corso…' : 'Entra con Microsoft Entra ID'}
                   <span className={styles.ctaArrow} aria-hidden="true">
                     <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
                   </span>
                 </button>
+                {error !== null && (
+                  <p className={styles.errorMsg}>{error}</p>
+                )}
 
                 <div className={styles.divider} aria-hidden="true">
                   <span className={styles.dividerLine} />
