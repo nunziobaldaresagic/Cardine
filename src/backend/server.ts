@@ -12,6 +12,8 @@ import careerMapRouter from './routes/careerMap';
 import proximityRouter from './routes/proximity';
 import gapRouter from './routes/gap';
 import roadmapRouter from './routes/roadmap';
+import appointmentsRouter from './routes/appointments';
+import { validateToken } from './middleware/auth';
 
 const app = express();
 const PORT = process.env.PORT ?? 3001;
@@ -19,27 +21,42 @@ const PORT = process.env.PORT ?? 3001;
 app.use(cors());
 app.use(express.json());
 
-// Swagger UI
+// Route pubbliche — non richiedono token
 const openapiPath = path.join(__dirname, 'openapi.yaml');
-const openapiSpec = yaml.load(fs.readFileSync(openapiPath, 'utf-8')) as object;
-app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(openapiSpec));
-app.get('/api/openapi.yaml', (_req, res) => {
+const openapiBase = yaml.load(fs.readFileSync(openapiPath, 'utf-8')) as Record<string, unknown>;
+
+// Swagger UI con server URL dinamico (funziona sia in locale che su Azure)
+app.use('/api/docs', swaggerUi.serve);
+app.get('/api/docs', (req, res, next) => {
+  const proto = (req.headers['x-forwarded-proto'] as string) ?? req.protocol;
+  const host = (req.headers['x-forwarded-host'] as string) ?? req.headers.host ?? `localhost:${PORT}`;
+  const baseUrl = `${proto}://${host}`;
+  const spec = { ...openapiBase, servers: [{ url: baseUrl, description: 'Server corrente' }] };
+  swaggerUi.setup(spec)(req, res, next);
+});
+app.get('/api/openapi.yaml', (req, res) => {
+  const proto = (req.headers['x-forwarded-proto'] as string) ?? req.protocol;
+  const host = (req.headers['x-forwarded-host'] as string) ?? req.headers.host ?? `localhost:${PORT}`;
+  const baseUrl = `${proto}://${host}`;
+  const spec = { ...openapiBase, servers: [{ url: baseUrl, description: 'Server corrente' }] };
   res.setHeader('Content-Type', 'text/yaml');
-  res.sendFile(openapiPath);
+  res.send(yaml.dump(spec));
+});
+app.get('/api/health', (_req, res) => {
+  res.json({ ok: true, version: '0.1.0', env: process.env.NODE_ENV ?? 'development' });
 });
 
-// Routes
+// Validazione token Entra ID — tutte le route successive la richiedono
+app.use('/api', validateToken);
+
+// Route protette
 app.use('/api/auth', authRouter);
 app.use('/api/employees', employeesRouter);
 app.use('/api/career-map', careerMapRouter);
 app.use('/api/employees/:id/proximity', proximityRouter);
 app.use('/api/employees/:id/gap', gapRouter);
 app.use('/api/employees/:id/roadmap', roadmapRouter);
-
-// Health check
-app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, version: '0.1.0', env: process.env.NODE_ENV ?? 'development' });
-});
+app.use('/api/appointments', appointmentsRouter);
 
 app.listen(PORT, () => {
   console.log(`\n🚀 Cardine backend PoC running at http://localhost:${PORT}`);

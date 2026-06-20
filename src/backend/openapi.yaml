@@ -3,8 +3,7 @@ info:
   title: Cardine Backend API — PoC
   description: |
     REST API per la PoC di Cardine — piattaforma B2B di career counseling.
-    Tutti gli endpoint sono aperti (nessuna auth reale nella PoC).
-    I dati sono in-memory caricati dai file mock-json/.
+    Tutti gli endpoint (tranne /api/health, /api/docs) richiedono un Bearer token Microsoft Entra ID.
     La roadmap viene generata via SSE (Server-Sent Events).
   version: 0.1.0
   contact:
@@ -13,6 +12,9 @@ info:
 servers:
   - url: http://localhost:3001
     description: Sviluppo locale
+
+security:
+  - BearerAuth: []
 
 tags:
   - name: Auth
@@ -27,6 +29,8 @@ tags:
     description: Gap analysis dettagliata
   - name: Roadmap
     description: Generazione, conferma e lettura della roadmap
+  - name: Appointments
+    description: Gestione colloqui di sviluppo tra Dipendente e Career Counselor
 
 paths:
   /api/auth/login:
@@ -238,7 +242,203 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 
+  /api/appointments:
+    get:
+      tags: [Appointments]
+      summary: Lista colloqui
+      description: |
+        Restituisce la lista dei colloqui, filtrabili per dipendente, counselor, range di date e stato.
+        I risultati sono ordinati per `scheduledAt` ascendente.
+      parameters:
+        - name: employeeId
+          in: query
+          required: false
+          description: ID del dipendente
+          schema:
+            type: string
+        - name: counselorId
+          in: query
+          required: false
+          description: ID del career counselor
+          schema:
+            type: string
+        - name: from
+          in: query
+          required: false
+          description: Data inizio range (scheduledAt ≥ from). Formato ISO 8601.
+          schema:
+            type: string
+            format: date
+            example: '2026-07-01'
+        - name: to
+          in: query
+          required: false
+          description: Data fine range (scheduledAt ≤ to). Formato ISO 8601.
+          schema:
+            type: string
+            format: date
+            example: '2026-07-31'
+        - name: status
+          in: query
+          required: false
+          description: Filtra per stato del colloquio
+          schema:
+            $ref: '#/components/schemas/AppointmentStatus'
+      responses:
+        '200':
+          description: Lista colloqui
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appointment'
+    post:
+      tags: [Appointments]
+      summary: Crea un nuovo colloquio
+      description: Crea un colloquio con stato iniziale PENDING.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppointmentCreate'
+      responses:
+        '201':
+          description: Colloquio creato
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/appointments/{id}:
+    get:
+      tags: [Appointments]
+      summary: Dettaglio colloquio
+      parameters:
+        - $ref: '#/components/parameters/appointmentId'
+      responses:
+        '200':
+          description: Colloquio
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      tags: [Appointments]
+      summary: Aggiorna campi del colloquio
+      description: Aggiorna scheduledAt e/o notes. Non modifica lo stato.
+      parameters:
+        - $ref: '#/components/parameters/appointmentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppointmentUpdate'
+      responses:
+        '200':
+          description: Colloquio aggiornato
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags: [Appointments]
+      summary: Elimina un colloquio
+      parameters:
+        - $ref: '#/components/parameters/appointmentId'
+      responses:
+        '204':
+          description: Eliminato
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/appointments/{id}/propose:
+    patch:
+      tags: [Appointments]
+      summary: Proponi un orario per il colloquio
+      description: Transizione PENDING → PROPOSED. Può includere scheduledAt.
+      parameters:
+        - $ref: '#/components/parameters/appointmentId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                scheduledAt:
+                  type: string
+                  format: date-time
+                  example: '2026-07-15T10:00:00Z'
+      responses:
+        '200':
+          description: Colloquio proposto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/appointments/{id}/confirm:
+    patch:
+      tags: [Appointments]
+      summary: Conferma il colloquio
+      description: Transizione PROPOSED → CONFIRMED.
+      parameters:
+        - $ref: '#/components/parameters/appointmentId'
+      responses:
+        '200':
+          description: Colloquio confermato
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/appointments/{id}/cancel:
+    patch:
+      tags: [Appointments]
+      summary: Cancella il colloquio
+      description: Transizione da qualsiasi stato → CANCELLED.
+      parameters:
+        - $ref: '#/components/parameters/appointmentId'
+      responses:
+        '200':
+          description: Colloquio cancellato
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
 components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        Token JWT emesso da Microsoft Entra ID.
+        Il frontend lo acquisisce via MSAL e lo invia nell'header `Authorization: Bearer <token>`.
+        Il claim che determina il ruolo è configurabile via `ENTRA_ROLE_CLAIM` nel .env (default: `roles`).
+
   parameters:
     employeeId:
       name: id
@@ -248,10 +448,25 @@ components:
       schema:
         type: string
         example: 01_giulia_ferraro
+    appointmentId:
+      name: id
+      in: path
+      required: true
+      description: UUID del colloquio
+      schema:
+        type: string
+        format: uuid
+        example: 550e8400-e29b-41d4-a716-446655440000
 
   responses:
     NotFound:
       description: Risorsa non trovata
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Richiesta non valida o transizione di stato non consentita
       content:
         application/json:
           schema:
@@ -534,3 +749,70 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RoadmapItem'
+
+    AppointmentStatus:
+      type: string
+      enum: [PENDING, PROPOSED, CONFIRMED, CANCELLED]
+      description: |
+        Ciclo di vita di un colloquio:
+        PENDING → propose → PROPOSED → confirm → CONFIRMED
+        Cancellabile in qualsiasi stato → CANCELLED
+
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        employeeId:
+          type: string
+          example: 01_giulia_ferraro
+        counselorId:
+          type: string
+          example: counselor_01
+        scheduledAt:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2026-07-15T10:00:00Z'
+        status:
+          $ref: '#/components/schemas/AppointmentStatus'
+        notes:
+          type: string
+          nullable: true
+          example: Preparare sintesi roadmap prima del colloquio
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    AppointmentCreate:
+      type: object
+      required: [employeeId, counselorId]
+      properties:
+        employeeId:
+          type: string
+          example: 01_giulia_ferraro
+        counselorId:
+          type: string
+          example: counselor_01
+        scheduledAt:
+          type: string
+          format: date-time
+          nullable: true
+        notes:
+          type: string
+          nullable: true
+
+    AppointmentUpdate:
+      type: object
+      properties:
+        scheduledAt:
+          type: string
+          format: date-time
+          nullable: true
+        notes:
+          type: string
+          nullable: true

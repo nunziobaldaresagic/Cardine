@@ -1,5 +1,20 @@
 // Core domain types for Cardine PoC
 
+// Appointments
+
+export type AppointmentStatus = 'PENDING' | 'PROPOSED' | 'CONFIRMED' | 'CANCELLED';
+
+export interface Appointment {
+  id: string;
+  employeeId: string;
+  counselorId: string;
+  scheduledAt: string | null;
+  status: AppointmentStatus;
+  notes: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface PersonalInfo {
   name: string;
   email: string;
