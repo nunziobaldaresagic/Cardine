@@ -1,101 +1,168 @@
 import styles from './LoginPage.module.css'
 
-const MICROSOFT_ICON = (
+const CARDINE_LOGO =
+  'https://lh3.googleusercontent.com/aida/AP1WRLvE88KAXXzYHoNOU9vf8YGwQQnL9FZ6HlG3rhy00aYzQ_RdfCBwZro_lsaUgBfmN0UpI5r4duizX2v-DDxFug7PYgK3G9gzMLZ5p8s4xCNeDOuYF2Ks3cf6ya0JcJEyK72jfzaIiVPMdc8VXDSmeNXFJ1MtnqdYurKKWd6NUilZWsf0Dun-4MHWNjLzCw_nvyhanJcDuNmGbVWa0I7nrMtxwQB4r4Tms1pcVzlHXKrjnmscrzuXI0Jns3Y'
+
+const MS_ICON = (
   <svg width="20" height="20" viewBox="0 0 21 21" aria-hidden="true">
-    <rect x="1" y="1" width="9" height="9" fill="#f25022" />
-    <rect x="11" y="1" width="9" height="9" fill="#7fba00" />
-    <rect x="1" y="11" width="9" height="9" fill="#00a4ef" />
-    <rect x="11" y="11" width="9" height="9" fill="#ffb900" />
+    <path d="M10 0H0V10H10V0Z" fill="#F25022" />
+    <path d="M21 0H11V10H21V0Z" fill="#7FBA00" />
+    <path d="M10 11H0V21H10V11Z" fill="#00A4EF" />
+    <path d="M21 11H11V21H21V11Z" fill="#FFB900" />
   </svg>
 )
 
+const YEAR = new Date().getFullYear()
+
 export default function LoginPage() {
   function handleLogin() {
-    // TODO: sostituire con redirect MSAL fornito dal backend
     window.location.href = '/api/auth/entra/login'
   }
 
   return (
-    <div className={styles.root}>
-      {/* ── Pannello branding (solo desktop) ── */}
-      <aside className={styles.branding} aria-hidden="true">
-        <div className={styles.brandingInner}>
-          <div className={styles.logo}>
-            <span className={styles.logoMark} />
-            <span className={styles.logoText}>Cardine</span>
-          </div>
+    <>
+      {/* ━━━ MOBILE (<1024px) ━━━ */}
+      <div className={styles.mobile}>
+        <div className={styles.bgGrid} aria-hidden="true">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="m-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1A6B72" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#m-grid)" />
+          </svg>
+        </div>
+        <div className={`${styles.blob} ${styles.blobTR}`} aria-hidden="true" />
+        <div className={`${styles.blob} ${styles.blobBL}`} aria-hidden="true" />
 
-          <div className={styles.brandingCopy}>
-            <p className={styles.brandingEyebrow}>Pivotal Growth</p>
-            <h1 className={styles.brandingHeadline}>
-              Mappa le tue competenze.<br />
-              Scopri dove puoi arrivare.
-            </h1>
-            <p className={styles.brandingSubtitle}>
-              Esplora percorsi di carriera interni e trova il tuo
-              prossimo ruolo ideale all'interno dell'organizzazione.
+        <div className={styles.mobileWrap}>
+          <div className={styles.glassCard}>
+            <img src={CARDINE_LOGO} alt="Cardine" className={styles.mobileLogoImg} />
+            <h1 className={styles.mobileHeadline}>Benvenuto in Cardine</h1>
+            <p className={styles.mobileSubtitle}>
+              Accedi per esplorare le tue opportunità di crescita professionale.
             </p>
-          </div>
 
-          <ul className={styles.featurePills} aria-label="Funzionalità">
-            <li>Skill Mapping</li>
-            <li>Internal Mobility</li>
-            <li>Career Paths</li>
-          </ul>
-        </div>
-      </aside>
-
-      {/* ── Card login ── */}
-      <main className={styles.card}>
-        <div className={styles.cardInner}>
-          {/* Logo mobile */}
-          <div className={styles.logoMobile} aria-label="Cardine">
-            <span className={styles.logoMark} />
-            <span className={styles.logoText}>Cardine</span>
-          </div>
-
-          <h2 className={styles.headline}>Benvenuto in Cardine</h2>
-          <p className={styles.subtitle}>
-            Accedi per esplorare le tue opportunità di crescita professionale.
-          </p>
-
-          <button
-            type="button"
-            className={styles.cta}
-            onClick={handleLogin}
-          >
-            {MICROSOFT_ICON}
-            Entra con Microsoft Entra ID
-          </button>
-
-          <div className={styles.securityNote}>
-            <svg
-              className={styles.shieldIcon}
-              viewBox="0 0 24 24"
-              width="16"
-              height="16"
-              aria-hidden="true"
-              fill="currentColor"
-            >
-              <path d="M12 1L3 5v6c0 5.25 3.75 10.15 9 11.35C17.25 21.15 21 16.25 21 11V5l-9-4zm0 4a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0 13c-2 0-4-.9-5.4-2.5.3-1.8 2.7-2.5 5.4-2.5s5.1.7 5.4 2.5C16 17.1 14 18 12 18z" />
-            </svg>
-            <div>
-              <strong>Accesso Sicuro Aziendale</strong>
-              <p>
-                Utilizziamo SSO tramite il tuo account aziendale. Nessuna
-                password aggiuntiva è richiesta o memorizzata da Cardine.
-              </p>
+            {/* Security — PRIMA del bottone su mobile */}
+            <div className={styles.mobileSecurityBox}>
+              <span
+                className="material-symbols-outlined"
+                style={{ fontVariationSettings: "'FILL' 1", color: 'var(--color-primary-container)', marginTop: '2px', fontSize: '20px' }}
+                aria-hidden="true"
+              >shield_lock</span>
+              <div>
+                <h3 className={styles.securityTitle}>Accesso Sicuro Aziendale</h3>
+                <p className={styles.securityText}>
+                  Utilizziamo il Single Sign-On (SSO) tramite il tuo account aziendale
+                  per garantire la massima sicurezza dei tuoi dati.
+                </p>
+              </div>
             </div>
+
+            <button type="button" className={styles.ctaBtn} onClick={handleLogin}>
+              {MS_ICON}
+              Entra con Microsoft Entra ID
+            </button>
+          </div>
+
+          <div className={styles.mobileFooter}>
+            <div className={styles.mobileFooterLinks}>
+              <a href="#">Supporto</a>
+              <span className={styles.footerDot} aria-hidden="true">•</span>
+              <a href="#">Informativa sulla privacy</a>
+            </div>
+            <p className={styles.copyright}>© {YEAR} Cardine. Tutti i diritti riservati.</p>
           </div>
         </div>
+      </div>
 
-        <footer className={styles.footer}>
-          <a href="#">Supporto</a>
-          <span aria-hidden="true">·</span>
-          <a href="#">Informativa sulla privacy</a>
-          <p>© {new Date().getFullYear()} Cardine. Tutti i diritti riservati.</p>
+      {/* ━━━ DESKTOP (≥1024px) ━━━ */}
+      <div className={styles.desktop}>
+        <main className={styles.desktopMain}>
+          <div className={styles.desktopCard}>
+
+            {/* Sinistra: login */}
+            <div className={styles.loginPanel}>
+              <div className={styles.desktopLogoGroup}>
+                <img src={CARDINE_LOGO} alt="Cardine" className={styles.desktopLogoImg} />
+                <h1 className={styles.desktopHeadline}>Benvenuto in Cardine</h1>
+                <p className={styles.desktopSubtitle}>
+                  Accedi alla piattaforma per gestire la tua crescita professionale
+                  e scoprire nuove opportunità interne.
+                </p>
+              </div>
+
+              <div className={styles.desktopActions}>
+                {/* CTA — PRIMA della security su desktop */}
+                <button type="button" className={`${styles.ctaBtn} ${styles.ctaBtnDesktop}`} onClick={handleLogin}>
+                  {MS_ICON}
+                  Entra con Microsoft Entra ID
+                  <span className={styles.ctaArrow} aria-hidden="true">
+                    <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
+                  </span>
+                </button>
+
+                <div className={styles.divider} aria-hidden="true">
+                  <span className={styles.dividerLine} />
+                  <span className={styles.dividerLabel}>oppure</span>
+                  <span className={styles.dividerLine} />
+                </div>
+
+                {/* Security — DOPO il bottone su desktop */}
+                <div className={styles.desktopSecurityBox}>
+                  <div className={styles.securityBoxHeader}>
+                    <span
+                      className="material-symbols-outlined"
+                      style={{ fontVariationSettings: "'FILL' 1", color: 'var(--color-secondary-container)', fontSize: '20px', flexShrink: 0 }}
+                      aria-hidden="true"
+                    >shield_locked</span>
+                    <h3 className={styles.securityTitle}>Accesso Sicuro Aziendale</h3>
+                  </div>
+                  <p className={`${styles.securityText} ${styles.securityTextIndent}`}>
+                    Cardine utilizza l'infrastruttura Microsoft Entra ID della tua azienda.
+                    I tuoi dati personali, le credenziali e le informazioni sulla carriera
+                    sono crittografati e gestiti in conformità con le policy di sicurezza
+                    aziendali. Nessuna password aggiuntiva è richiesta o memorizzata da Cardine.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Destra: branding */}
+            <div className={styles.brandPanel} aria-hidden="true">
+              <div className={styles.brandBlob1} />
+              <div className={styles.brandBlob2} />
+              <div className={styles.brandContent}>
+                <span
+                  className="material-symbols-outlined"
+                  style={{ fontVariationSettings: "'FILL' 0", fontSize: '64px', color: 'var(--color-primary-container)', display: 'block', marginBottom: 'var(--space-md)' }}
+                >psychology</span>
+                <h2 className={styles.brandHeadline}>Pivotal Growth</h2>
+                <p className={styles.brandText}>
+                  Mappa le tue competenze, esplora percorsi di carriera interni e
+                  trova il tuo prossimo ruolo ideale all'interno dell'organizzazione.
+                </p>
+                <ul className={styles.featurePills}>
+                  <li>Skill Mapping</li>
+                  <li>Internal Mobility</li>
+                  <li>Career Paths</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </main>
+
+        <footer className={styles.desktopFooter}>
+          <span>© {YEAR} Cardine. All rights reserved.</span>
+          <nav className={styles.desktopFooterNav}>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Support</a>
+          </nav>
         </footer>
-      </main>
-    </div>
+      </div>
+    </>
   )
 }

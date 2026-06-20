@@ -8,123 +8,121 @@
 
 :root {
   /* ─── Colori: Surface ──────────────────────────────────────────────────── */
-  --color-surface:                  #fcf8ff;
-  --color-surface-dim:              #dad7f3;
-  --color-surface-bright:           #fcf8ff;
+  --color-surface: #fcf8ff;
+  --color-surface-dim: #dad7f3;
+  --color-surface-bright: #fcf8ff;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low:    #f5f2ff;
-  --color-surface-container:        #efecff;
-  --color-surface-container-high:   #e8e5ff;
-  --color-surface-container-highest:#e2e0fc;
-  --color-surface-variant:          #e2e0fc;
-  --color-surface-tint:             #15686f;
-  --color-on-surface:               #1a1a2e;
-  --color-on-surface-variant:       #3f484a;
-  --color-inverse-surface:          #2f2e43;
-  --color-inverse-on-surface:       #f2efff;
+  --color-surface-container-low: #f5f2ff;
+  --color-surface-container: #efecff;
+  --color-surface-container-high: #e8e5ff;
+  --color-surface-container-highest: #e2e0fc;
+  --color-surface-variant: #e2e0fc;
+  --color-surface-tint: #15686f;
+  --color-on-surface: #1a1a2e;
+  --color-on-surface-variant: #3f484a;
+  --color-inverse-surface: #2f2e43;
+  --color-inverse-on-surface: #f2efff;
 
   /* ─── Colori: Primary (Deep Teal) ─────────────────────────────────────── */
-  --color-primary:                  #005258;
-  --color-on-primary:               #ffffff;
-  --color-primary-container:        #1a6b72;
-  --color-on-primary-container:     #a1e9f1;
-  --color-inverse-primary:          #8bd2da;
-  --color-primary-fixed:            #a6eff6;
-  --color-primary-fixed-dim:        #8bd2da;
-  --color-on-primary-fixed:         #002022;
+  --color-primary: #005258;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #1a6b72;
+  --color-on-primary-container: #a1e9f1;
+  --color-inverse-primary: #8bd2da;
+  --color-primary-fixed: #a6eff6;
+  --color-primary-fixed-dim: #8bd2da;
+  --color-on-primary-fixed: #002022;
   --color-on-primary-fixed-variant: #004f55;
 
   /* ─── Colori: Secondary (Warm Amber) ──────────────────────────────────── */
-  --color-secondary:                #805600;
-  --color-on-secondary:             #ffffff;
-  --color-secondary-container:      #ffb21d;
-  --color-on-secondary-container:   #6b4800;
-  --color-secondary-fixed:          #ffddaf;
-  --color-secondary-fixed-dim:      #ffba44;
-  --color-on-secondary-fixed:       #281800;
-  --color-on-secondary-fixed-variant:#614000;
+  --color-secondary: #805600;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #ffb21d;
+  --color-on-secondary-container: #6b4800;
+  --color-secondary-fixed: #ffddaf;
+  --color-secondary-fixed-dim: #ffba44;
+  --color-on-secondary-fixed: #281800;
+  --color-on-secondary-fixed-variant: #614000;
 
   /* ─── Colori: Tertiary (Success Green) ────────────────────────────────── */
-  --color-tertiary:                 #005623;
-  --color-on-tertiary:              #ffffff;
-  --color-tertiary-container:       #007130;
-  --color-on-tertiary-container:    #65f98b;
-  --color-tertiary-fixed:           #6bff8f;
-  --color-tertiary-fixed-dim:       #4ae176;
-  --color-on-tertiary-fixed:        #002109;
-  --color-on-tertiary-fixed-variant:#005321;
+  --color-tertiary: #005623;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #007130;
+  --color-on-tertiary-container: #65f98b;
+  --color-tertiary-fixed: #6bff8f;
+  --color-tertiary-fixed-dim: #4ae176;
+  --color-on-tertiary-fixed: #002109;
+  --color-on-tertiary-fixed-variant: #005321;
 
   /* ─── Colori: Error ────────────────────────────────────────────────────── */
-  --color-error:                    #ba1a1a;
-  --color-on-error:                 #ffffff;
-  --color-error-container:          #ffdad6;
-  --color-on-error-container:       #93000a;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
 
   /* ─── Colori: Background ───────────────────────────────────────────────── */
-  --color-background:               #fcf8ff;
-  --color-on-background:            #1a1a2e;
+  --color-background: #fcf8ff;
+  --color-on-background: #1a1a2e;
 
   /* ─── Colori: Outline ──────────────────────────────────────────────────── */
-  --color-outline:                  #6f797a;
-  --color-outline-variant:          #bec8c9;
+  --color-outline: #6f797a;
+  --color-outline-variant: #bec8c9;
 
   /* ─── Tipografia ───────────────────────────────────────────────────────── */
-  --font-family:                    'Inter', sans-serif;
+  --font-family: 'Inter', sans-serif;
 
-  --text-display-lg-size:           3rem;       /* 48px */
-  --text-display-lg-weight:         700;
-  --text-display-lg-line-height:    3.5rem;     /* 56px */
+  --text-display-lg-size: 3rem; /* 48px */
+  --text-display-lg-weight: 700;
+  --text-display-lg-line-height: 3.5rem; /* 56px */
   --text-display-lg-letter-spacing: -0.02em;
 
-  --text-headline-lg-size:          2rem;       /* 32px */
-  --text-headline-lg-weight:        700;
-  --text-headline-lg-line-height:   2.5rem;     /* 40px */
-  --text-headline-lg-letter-spacing:-0.01em;
+  --text-headline-lg-size: 2rem; /* 32px */
+  --text-headline-lg-weight: 700;
+  --text-headline-lg-line-height: 2.5rem; /* 40px */
+  --text-headline-lg-letter-spacing: -0.01em;
 
-  --text-headline-lg-mobile-size:   1.5rem;     /* 24px */
+  --text-headline-lg-mobile-size: 1.5rem; /* 24px */
   --text-headline-lg-mobile-weight: 700;
-  --text-headline-lg-mobile-line-height: 2rem;  /* 32px */
+  --text-headline-lg-mobile-line-height: 2rem; /* 32px */
 
-  --text-headline-md-size:          1.5rem;     /* 24px */
-  --text-headline-md-weight:        600;
-  --text-headline-md-line-height:   2rem;       /* 32px */
+  --text-headline-md-size: 1.5rem; /* 24px */
+  --text-headline-md-weight: 600;
+  --text-headline-md-line-height: 2rem; /* 32px */
 
-  --text-body-lg-size:              1.125rem;   /* 18px */
-  --text-body-lg-weight:            400;
-  --text-body-lg-line-height:       1.75rem;    /* 28px */
+  --text-body-lg-size: 1.125rem; /* 18px */
+  --text-body-lg-weight: 400;
+  --text-body-lg-line-height: 1.75rem; /* 28px */
 
-  --text-body-md-size:              1rem;       /* 16px */
-  --text-body-md-weight:            400;
-  --text-body-md-line-height:       1.5rem;     /* 24px */
+  --text-body-md-size: 1rem; /* 16px */
+  --text-body-md-weight: 400;
+  --text-body-md-line-height: 1.5rem; /* 24px */
 
-  --text-label-md-size:             0.875rem;   /* 14px */
-  --text-label-md-weight:           600;
-  --text-label-md-line-height:      1.25rem;    /* 20px */
-  --text-label-md-letter-spacing:   0.05em;
+  --text-label-md-size: 0.875rem; /* 14px */
+  --text-label-md-weight: 600;
+  --text-label-md-line-height: 1.25rem; /* 20px */
+  --text-label-md-letter-spacing: 0.05em;
 
-  --text-caption-size:              0.75rem;    /* 12px */
-  --text-caption-weight:            400;
-  --text-caption-line-height:       1rem;       /* 16px */
+  --text-caption-size: 0.75rem; /* 12px */
+  --text-caption-weight: 400;
+  --text-caption-line-height: 1rem; /* 16px */
 
   /* ─── Spaziatura (8px grid) ────────────────────────────────────────────── */
-  --space-xs:             0.25rem;   /* 4px  */
-  --space-base:           0.5rem;    /* 8px  */
-  --space-sm:             0.75rem;   /* 12px */
-  --space-md:             1.5rem;    /* 24px */
-  --space-lg:             2.5rem;    /* 40px */
-  --space-xl:             4rem;      /* 64px */
-  --space-container-max:  80rem;     /* 1280px */
-  --space-gutter:         1.5rem;    /* 24px */
+  --space-xs: 0.25rem; /* 4px  */
+  --space-base: 0.5rem; /* 8px  */
+  --space-sm: 0.75rem; /* 12px */
+  --space-md: 1.5rem; /* 24px */
+  --space-lg: 2.5rem; /* 40px */
+  --space-xl: 4rem; /* 64px */
+  --space-container-max: 80rem; /* 1280px */
+  --space-gutter: 1.5rem; /* 24px */
 
-  /* ─── Border Radius ────────────────────────────────────────────────────── */
-  --radius-sm:            0.25rem;
-  --radius:               0.5rem;
-  --radius-md:            0.75rem;
-  --radius-lg:            1rem;
-  --radius-xl:            1.5rem;
-  --radius-full:          9999px;
+  /* ─── Border Radius (allineati al Tailwind config Stitch) ─────────────── */
+  --radius:      0.25rem;   /* rounded    — piccoli elementi  */
+  --radius-lg:   0.5rem;    /* rounded-lg — bottoni, input    */
+  --radius-xl:   0.75rem;   /* rounded-xl — card, modali      */
+  --radius-full: 9999px;    /* rounded-full — pill, avatar    */
 
   /* ─── Elevation / Shadow ───────────────────────────────────────────────── */
-  --shadow-card:          0px 4px 12px rgba(26, 26, 46, 0.05);
-  --shadow-card-hover:    0px 8px 24px rgba(26, 26, 46, 0.08);
+  --shadow-card: 0px 4px 12px rgba(26, 26, 46, 0.05);
+  --shadow-card-hover: 0px 8px 24px rgba(26, 26, 46, 0.08);
 }
