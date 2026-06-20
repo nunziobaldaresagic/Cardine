@@ -1,0 +1,42 @@
+name: Deploy frontend
+
+# Builds the Vite/React SPA with the MSAL + API config baked in and deploys it
+# to Azure Static Web Apps (https://cardine.azlabs.it) via the deployment token.
+# The VITE_* values are public (they ship in the browser bundle), so they live
+# here as plain build args; only the SWA token is a secret.
+
+on:
+  push:
+    branches: [main, na/frontend]
+    paths:
+      - 'src/frontend/**'
+      - '.github/workflows/deploy-frontend.yml'
+  workflow_dispatch:
+
+env:
+  VITE_API_BASE_URL: https://api.cardine.azlabs.it/api
+  VITE_MICROSOFT_CLIENT_ID: 5ad51d57-1d2e-4c7d-9d53-9a0941750c46
+  VITE_MICROSOFT_TENANT_ID: c898a3e3-fcfb-4550-b650-1f3849967e2d
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build
+        working-directory: src/frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to Static Web Apps
+        working-directory: src/frontend
+        run: |
+          npx -y @azure/static-web-apps-cli deploy ./dist \
+            --deployment-token "${{ secrets.SWA_DEPLOY_TOKEN }}" \
+            --env production
