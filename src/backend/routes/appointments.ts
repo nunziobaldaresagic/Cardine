@@ -7,29 +7,38 @@ const router = Router();
 
 const VALID_STATUSES: AppointmentStatus[] = ['PENDING', 'PROPOSED', 'CONFIRMED', 'CANCELLED'];
 
-// GET /api/appointments?employeeId=&counselorId=&from=&to=&status=
+// GET /api/appointments?from=&to=&status=
+// - dipendente: vede solo i propri appuntamenti (employeeId dal token)
+// - counselor: vede i propri appuntamenti (counselorId dal token), filtrabili per employeeId
 router.get('/', async (req: Request, res: Response) => {
-  const { employeeId, counselorId, from, to, status } = req.query as Record<string, string | undefined>;
+  const { from, to, status, employeeId } = req.query as Record<string, string | undefined>;
+  const actor = req.actor!;
 
   if (status && !VALID_STATUSES.includes(status as AppointmentStatus)) {
     res.status(400).json({ error: `status non valido. Valori accettati: ${VALID_STATUSES.join(', ')}` });
     return;
   }
 
+  const where: Record<string, unknown> = {};
+
+  if (actor.role === 'dipendente') {
+    where['employeeId'] = actor.employeeId;
+  } else {
+    // counselor: sempre scoped al proprio counselorId, può filtrare anche per employeeId
+    where['counselorId'] = actor.counselorId;
+    if (employeeId) where['employeeId'] = employeeId;
+  }
+
+  if (status) where['status'] = status as AppointmentStatus;
+  if (from || to) {
+    where['scheduledAt'] = {
+      ...(from ? { gte: new Date(from) } : {}),
+      ...(to ? { lte: new Date(to) } : {}),
+    };
+  }
+
   const appointments = await prisma.appointment.findMany({
-    where: {
-      ...(employeeId ? { employeeId } : {}),
-      ...(counselorId ? { counselorId } : {}),
-      ...(status ? { status: status as AppointmentStatus } : {}),
-      ...(from || to
-        ? {
-            scheduledAt: {
-              ...(from ? { gte: new Date(from) } : {}),
-              ...(to ? { lte: new Date(to) } : {}),
-            },
-          }
-        : {}),
-    },
+    where,
     orderBy: { scheduledAt: 'asc' },
   });
 
@@ -37,16 +46,17 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 // POST /api/appointments
+// - dipendente: employeeId forzato dal token, passa solo counselorId e notes
+// - counselor: passa employeeId e notes; counselorId forzato dal token
 router.post('/', async (req: Request, res: Response) => {
-  const { employeeId, counselorId, scheduledAt, notes } = req.body as {
-    employeeId?: string;
-    counselorId?: string;
-    scheduledAt?: string;
-    notes?: string;
-  };
+  const actor = req.actor!;
+  const body = req.body as { employeeId?: string; counselorId?: string; scheduledAt?: string; notes?: string };
+
+  const employeeId = actor.role === 'dipendente' ? actor.employeeId! : body.employeeId;
+  const counselorId = actor.role === 'counselor' ? actor.counselorId! : body.counselorId;
 
   if (!employeeId || !counselorId) {
-    res.status(400).json({ error: 'employeeId e counselorId sono obbligatori' });
+    res.status(400).json({ error: actor.role === 'dipendente' ? 'counselorId obbligatorio' : 'employeeId obbligatorio' });
     return;
   }
 
@@ -54,8 +64,8 @@ router.post('/', async (req: Request, res: Response) => {
     data: {
       employeeId,
       counselorId,
-      scheduledAt: scheduledAt ? new Date(scheduledAt) : null,
-      notes: notes ?? null,
+      scheduledAt: body.scheduledAt ? new Date(body.scheduledAt) : null,
+      notes: body.notes ?? null,
     },
   });
 
@@ -64,19 +74,22 @@ router.post('/', async (req: Request, res: Response) => {
 
 // GET /api/appointments/:id
 router.get('/:id', async (req: Request<{ id: string }>, res: Response) => {
-  const appointment = await prisma.appointment.findUnique({
-    where: { id: req.params.id },
-  });
-
+  const appointment = await prisma.appointment.findUnique({ where: { id: req.params.id } });
   if (!appointment) {
     res.status(404).json({ error: 'Appointment non trovato' });
+    return;
+  }
+
+  const actor = req.actor!;
+  if (actor.role === 'dipendente' && appointment.employeeId !== actor.employeeId) {
+    res.status(403).json({ error: 'Accesso non autorizzato' });
     return;
   }
 
   res.json(appointment);
 });
 
-// PATCH /api/appointments/:id — aggiorna campi liberi (scheduledAt, notes)
+// PATCH /api/appointments/:id
 router.patch('/:id', async (req: Request<{ id: string }>, res: Response) => {
   const existing = await prisma.appointment.findUnique({ where: { id: req.params.id } });
   if (!existing) {
@@ -84,8 +97,13 @@ router.patch('/:id', async (req: Request<{ id: string }>, res: Response) => {
     return;
   }
 
-  const { scheduledAt, notes } = req.body as { scheduledAt?: string; notes?: string };
+  const actor = req.actor!;
+  if (actor.role === 'dipendente' && existing.employeeId !== actor.employeeId) {
+    res.status(403).json({ error: 'Accesso non autorizzato' });
+    return;
+  }
 
+  const { scheduledAt, notes } = req.body as { scheduledAt?: string; notes?: string };
   const updated = await prisma.appointment.update({
     where: { id: req.params.id },
     data: {
@@ -105,15 +123,27 @@ router.delete('/:id', async (req: Request<{ id: string }>, res: Response) => {
     return;
   }
 
+  const actor = req.actor!;
+  if (actor.role === 'dipendente' && existing.employeeId !== actor.employeeId) {
+    res.status(403).json({ error: 'Accesso non autorizzato' });
+    return;
+  }
+
   await prisma.appointment.delete({ where: { id: req.params.id } });
   res.status(204).send();
 });
 
-// PATCH /api/appointments/:id/propose — PENDING → PROPOSED
+// PATCH /api/appointments/:id/propose
 router.patch('/:id/propose', async (req: Request<{ id: string }>, res: Response) => {
   const existing = await prisma.appointment.findUnique({ where: { id: req.params.id } });
   if (!existing) {
     res.status(404).json({ error: 'Appointment non trovato' });
+    return;
+  }
+
+  const actor = req.actor!;
+  if (actor.role === 'dipendente' && existing.employeeId !== actor.employeeId) {
+    res.status(403).json({ error: 'Accesso non autorizzato' });
     return;
   }
   if (existing.status !== 'PENDING') {
@@ -122,7 +152,6 @@ router.patch('/:id/propose', async (req: Request<{ id: string }>, res: Response)
   }
 
   const { scheduledAt } = req.body as { scheduledAt?: string };
-
   const updated = await prisma.appointment.update({
     where: { id: req.params.id },
     data: {
@@ -134,11 +163,17 @@ router.patch('/:id/propose', async (req: Request<{ id: string }>, res: Response)
   res.json(updated);
 });
 
-// PATCH /api/appointments/:id/confirm — PROPOSED → CONFIRMED
+// PATCH /api/appointments/:id/confirm
 router.patch('/:id/confirm', async (req: Request<{ id: string }>, res: Response) => {
   const existing = await prisma.appointment.findUnique({ where: { id: req.params.id } });
   if (!existing) {
     res.status(404).json({ error: 'Appointment non trovato' });
+    return;
+  }
+
+  const actor = req.actor!;
+  if (actor.role === 'dipendente' && existing.employeeId !== actor.employeeId) {
+    res.status(403).json({ error: 'Accesso non autorizzato' });
     return;
   }
   if (existing.status !== 'PROPOSED') {
@@ -154,11 +189,17 @@ router.patch('/:id/confirm', async (req: Request<{ id: string }>, res: Response)
   res.json(updated);
 });
 
-// PATCH /api/appointments/:id/cancel — qualsiasi stato → CANCELLED
+// PATCH /api/appointments/:id/cancel
 router.patch('/:id/cancel', async (req: Request<{ id: string }>, res: Response) => {
   const existing = await prisma.appointment.findUnique({ where: { id: req.params.id } });
   if (!existing) {
     res.status(404).json({ error: 'Appointment non trovato' });
+    return;
+  }
+
+  const actor = req.actor!;
+  if (actor.role === 'dipendente' && existing.employeeId !== actor.employeeId) {
+    res.status(403).json({ error: 'Accesso non autorizzato' });
     return;
   }
   if (existing.status === 'CANCELLED') {

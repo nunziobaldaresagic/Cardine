@@ -11,8 +11,17 @@ export interface AuthUser {
   claims: Record<string, unknown>;
 }
 
+export interface Actor {
+  role: 'dipendente' | 'counselor';
+  /** Valorizzato solo per role === 'dipendente' */
+  employeeId?: string;
+  /** Valorizzato solo per role === 'counselor' (oid Entra ID) */
+  counselorId?: string;
+}
+
 declare module 'express' {
   interface Request {
     user?: AuthUser;
+    actor?: Actor;
   }
 }

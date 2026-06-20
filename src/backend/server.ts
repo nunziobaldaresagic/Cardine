@@ -14,6 +14,7 @@ import gapRouter from './routes/gap';
 import roadmapRouter from './routes/roadmap';
 import appointmentsRouter from './routes/appointments';
 import { validateToken } from './middleware/auth';
+import { resolveActor } from './middleware/resolveActor';
 
 const app = express();
 const PORT = process.env.PORT ?? 3001;
@@ -48,6 +49,7 @@ app.get('/api/health', (_req, res) => {
 
 // Validazione token Entra ID — tutte le route successive la richiedono
 app.use('/api', validateToken);
+app.use('/api', resolveActor);
 
 // Route protette
 app.use('/api/auth', authRouter);
